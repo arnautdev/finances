@@ -1,0 +1,8 @@
+{
+    "/app/js/app.js": "/app/js/app.js",
+    "/app/css/app.css": "/app/css/app.css",
+    "/modules/js/dashboard.js": "/modules/js/dashboard.js",
+    "/modules/css/dashboard.css": "/modules/css/dashboard.css",
+    "/modules/js/store.js": "/modules/js/store.js",
+    "/modules/css/store.css": "/modules/css/store.css"
+}
