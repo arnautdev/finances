@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,26 +13,14 @@
 |
 */
 
-// set user locale
-Route::get('locale/{locale}', function ($locale) {
-    session()->put('locale', $locale);
-    return redirect()->back();
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/', 'HomeController@index')->name('home.index');
+Route::namespace('App\Http\Controllers\\')->middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::resource('expenses', 'ExpensesController');
+});
 
-
-Route::resource('contact-form', 'ContactController')->only(['store']);
-Route::resource('newsletter', 'NewsletterController')->only(['store']);
-
-
-
-
-Route::get('client-login', 'Auth\LoginController@showLoginForm')->name('client-login');
-Route::post('client-login', 'Auth\LoginController@login')->name('client-login');
-
-Route::get('client-register', 'Auth\RegisterController@showRegistrationForm')->name('client-register');
-Route::post('client-register', 'Auth\RegisterController@register');
-
-Route::get('auth/{service}', 'Auth\SocialAuthController@redirect');
-Route::get('auth/{service}/callback', 'Auth\SocialAuthController@callback');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

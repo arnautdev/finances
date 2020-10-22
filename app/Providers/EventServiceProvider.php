@@ -2,13 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Modules\User\Events\RegisterInvitationEvent;
-use Modules\User\Listeners\RegisterInvitationListener;
-use Modules\User\Notifications\RegisterInvitationNotification;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,9 +18,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        RegisterInvitationEvent::class => [
-            RegisterInvitationListener::class
-        ]
     ];
 
     /**
@@ -33,8 +27,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
         //
     }
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'DEVLARA'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,28 +80,7 @@ return [
     |
     */
 
-    'locale' => 'bg',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Locale Configuration
-    |--------------------------------------------------------------------------
-    |
-    | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
-    | to any of the locales which will be supported by the application.
-    |
-    */
-
-    'locales' => [
-        'en' => 'English',
-        'bg' => 'Български',
-    ],
-
-    'localesI18n' => [
-        'bg',
-        'en',
-    ],
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -194,38 +173,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /*
-         * Custom service providers
-         */
-        \App\Providers\UtilsServiceProvider::class,
-        \App\Providers\DashboardServiceProvider::class,
-        \Modules\Dashboard\Providers\FormServiceProvider::class,
-        \Modules\Dashboard\Providers\TableServiceProvider::class,
-
-
-        // html forms
-        Collective\Html\HtmlServiceProvider::class,
-
-        // permissions
-        Spatie\Permission\PermissionServiceProvider::class,
-
-        // page-speed
-        RenatoMarinho\LaravelPageSpeed\ServiceProvider::class,
-
-        // translations
-        Dimsav\Translatable\TranslatableServiceProvider::class,
-
-        // meta
-        \Davmixcool\MetaManager\MetaServiceProvider::class,
-
-        /// add email service provider
-        ShvetsGroup\LaravelEmailDatabaseLog\LaravelEmailDatabaseLogServiceProvider::class,
-
-        /// shopping cart provider
-        Darryldecode\Cart\CartServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
 
     ],
 
@@ -259,6 +209,7 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -277,13 +228,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        // for html forms
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-
-        /// shopping cart alias
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 
