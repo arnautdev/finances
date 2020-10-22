@@ -17,10 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::namespace('App\Http\Controllers\\')->middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('expenses', 'ExpensesController');
-});
+Route::namespace('App\Http\Controllers\\')
+    ->prefix('dashboard')
+    ->middleware(['auth:sanctum', 'verified'])
+    ->group(function () {
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+        Route::get('/home', function () {
+            return view('dashboard');
+        })->name('dashboard');
+
+        Route::resource('expenses', 'ExpensesController');
+        Route::resource('monthly-reports', 'MonthlyReportsController');
+    });

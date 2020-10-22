@@ -19,7 +19,8 @@
                         {{ __('Expenses Settings') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('expenses.index') }}" :active="request()->routeIs('expenses.index')">
+                    <x-jet-nav-link href="{{ route('monthly-reports.index') }}"
+                                    :active="request()->routeIs('monthly-reports.index')">
                         {{ __('Monthly reports') }}
                     </x-jet-nav-link>
                 </div>

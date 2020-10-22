@@ -22,8 +22,9 @@ class CreateExpensesTable extends Migration
             $table->bigInteger('categoryId')->unsigned();
 
             $table->string('title', 100);
-            $table->enum('expenseType', ['monthly', 'dynamic']);
+            $table->enum('expenseType', ['monthly', 'dynamic'])->default('dynamic');
             $table->integer('amount')->default(0);
+            $table->enum('dynamicAmount', ['yes', 'no'])->default('no');
 
 
             $table->foreign('userId')->references('id')->on('users');

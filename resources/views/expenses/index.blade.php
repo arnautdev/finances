@@ -10,7 +10,10 @@
 
         {{ Form::open(['route' => 'expenses.store']) }}
 
-        
+        <div class="form-group">
+            <label for="">{{ __('Expense title') }}</label>
+            <input type="text" class="form-control"/>
+        </div>
 
         {{ Form::close() }}
     </div><!-- End ./container -->
