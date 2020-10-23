@@ -22,10 +22,11 @@ Route::namespace('App\Http\Controllers\\')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function () {
 
-        Route::get('/home', function () {
-            return view('dashboard');
-        })->name('dashboard');
+//        Route::get('/home', function () {
+//            return view('dashboard');
+//        })->name('dashboard');
 
+        Route::get('/home', 'DashboardController@index')->name('dashboard');
         Route::resource('expenses', 'ExpensesController');
         Route::resource('monthly-reports', 'MonthlyReportsController');
     });

@@ -10,10 +10,17 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+try {
+    window.Popper = require('popper.js/dist/popper')
 
-require('popper.js/dist/popper')
-require('jquery/dist/jquery')
-require('bootstrap/dist/js/bootstrap.min');
+    window.$ = window.jQuery = require('jquery/dist/jquery')
+
+    require('bootstrap/dist/js/bootstrap');
+
+    require('../admin-lte/js/adminlte')
+} catch (e) {
+    console.warn(e);
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
