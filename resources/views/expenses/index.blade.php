@@ -1,21 +1,13 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Expenses settings') }}
-        </h2>
-    </x-slot>
+<x-dashboard-layout>
 
+    <div class="card card-info card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Toasts Example</h3>
+        </div><!-- End ./header -->
 
-    <div class="container">
+        <div class="card-body">
 
-        {{ Form::open(['route' => 'expenses.store']) }}
+        </div><!-- End ./body -->
+    </div><!-- End ./card -->
 
-        <div class="form-group">
-            <label for="">{{ __('Expense title') }}</label>
-            <input type="text" class="form-control"/>
-        </div>
-
-        {{ Form::close() }}
-    </div><!-- End ./container -->
-
-</x-app-layout>
+</x-dashboard-layout>

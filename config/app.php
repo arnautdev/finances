@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,6 +81,10 @@ return [
     */
 
     'locale' => 'en',
+    'locales' => [
+        'en' => 'English',
+        'bg' => 'Bulgarian',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\PageServiceProvider::class,
 
         /*
          * Application Service Providers...
