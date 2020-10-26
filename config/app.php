@@ -170,6 +170,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\PageServiceProvider::class,
+        App\Providers\FormServiceProvider::class,
 
         /*
          * Application Service Providers...

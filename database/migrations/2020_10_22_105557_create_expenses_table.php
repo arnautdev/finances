@@ -28,7 +28,6 @@ class CreateExpensesTable extends Migration
 
 
             $table->foreign('userId')->references('id')->on('users');
-//            $table->foreign('categoryId')->references('id')->on('expense_categories');
         });
     }
 

@@ -1,12 +1,25 @@
 @php
-    $name = $attributes->get('name', 'unknown');
-    $type = $attributes->get('type', 'text');
-    $class = $attributes->get('class', '');
-    $label = $attributes->get('label', '');
+    $name = isset($name) ? $name : 'unknown';
+    $type = isset($type) ? $type : 'text';
+    $class = isset($class) ? $class : '';
+    $label = isset($label) ? $label : '';
 
     $placeholder = __(ucfirst($name));
-    if(!is_null($attributes->get('placeholder'))){
-        $placeholder = __($attributes->get('placeholder'));
+    if(isset($placeholder)){
+        $placeholder = __($placeholder);
+    }
+
+    $inputValue = '';
+    if(isset($data[$name])){
+        $inputValue = $data[$name];
+    }
+
+    if(isset($model) && isset($data[$model][$name])){
+        $inputValue = $data[$model][$name];
+    }
+
+    if(old($name)){
+        $inputValue = old($name);
     }
 @endphp
 
@@ -17,14 +30,21 @@
         </label>
         <div class="col-sm-7">
             <input type="{{ $type }}"
+                   name="{{ $name }}"
                    placeholder="{{ $placeholder }}"
                    id="{{ $name }}"
                    class="form-control {{  $class }}"
 
-                   @if($attributes->get('required'))
-                   required="required"
-                @endif
+            @if(isset($attrs))
+                @foreach($attrs as $key => $val)
+                    {{ $key }}="{{ $val }}"
+                @endforeach
+            @endif
+
+            value="{{ $inputValue }}"
             />
+
+            <small class="err-msg">{{ $errors->first($name) }}</small>
         </div>
     </div><!-- End ./form-group -->
 </div>

@@ -29,4 +29,5 @@ Route::namespace('App\Http\Controllers\\')
         Route::get('/home', 'DashboardController@index')->name('dashboard');
         Route::resource('expenses', 'ExpensesController');
         Route::resource('monthly-reports', 'MonthlyReportsController');
+        Route::resource('expenses-categories', 'ExpensesCategoriesController');
     });

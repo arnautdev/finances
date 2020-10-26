@@ -39,6 +39,16 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{ route('expenses-categories.index') }}"
+                   class="nav-link @if(request()->routeIs('expenses-categories.*')) active @endif">
+                    <i class="nav-icon fas fa-align-justify"></i>
+                    <p>
+                        {{ __('Expenses categories') }}
+                    </p>
+                </a>
+            </li>
+            
+            <li class="nav-item">
                 <a href="{{ route('expenses.index') }}"
                    class="nav-link @if(request()->routeIs('expenses.*')) active @endif">
                     <i class="nav-icon fas fa-cogs"></i>
