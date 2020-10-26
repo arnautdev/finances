@@ -21,8 +21,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "admin-lte": "^3.0.5",
         "bootstrap": "^4.5.3",
         "jquery": "^3.5.1",
+        "parsleyjs": "^2.9.2",
         "popper.js": "^1.14.3"
     }
 }

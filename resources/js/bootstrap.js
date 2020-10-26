@@ -12,12 +12,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 try {
     window.Popper = require('popper.js/dist/popper')
-
     window.$ = window.jQuery = require('jquery/dist/jquery')
 
     require('bootstrap/dist/js/bootstrap');
-
     require('../admin-lte/js/adminlte')
+
+    // parsley validator
+    require('parsleyjs');
+    require('parsleyjs/src/i18n/en');
+    require('parsleyjs/src/i18n/bg');
+    window.Parsley.setLocale($appLocale);
+
 } catch (e) {
     console.warn(e);
 }

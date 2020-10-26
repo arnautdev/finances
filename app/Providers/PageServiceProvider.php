@@ -29,6 +29,32 @@ class PageServiceProvider extends ServiceProvider
 
 
     /**
+     * Get create route
+     * @return string
+     */
+    public function getCreateRoute()
+    {
+        $route = Route::currentRouteName();
+        $route = explode('.', $route);
+        $route[1] = 'create';
+        $route = implode('.', $route);
+        return route($route);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCancelRoute()
+    {
+        $route = Route::currentRouteName();
+        $route = explode('.', $route);
+        $route[1] = 'index';
+        $route = implode('.', $route);
+        return route($route);
+    }
+
+
+    /**
      * Get page title
      * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null
      */

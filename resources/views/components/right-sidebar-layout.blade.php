@@ -30,7 +30,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('dashboard') }}"
-                   class="nav-link @if($isActive(request()->routeIs('dashboard'))) active @endif">
+                   class="nav-link @if(request()->routeIs('dashboard')) active @endif">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Client dashboard') }}
@@ -40,7 +40,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('expenses.index') }}"
-                   class="nav-link @if($isActive(request()->routeIs('expenses.index'))) active @endif">
+                   class="nav-link @if(request()->routeIs('expenses.*')) active @endif">
                     <i class="nav-icon fas fa-cogs"></i>
                     <p>
                         {{ __('Expenses settings') }}
@@ -50,7 +50,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('monthly-reports.index') }}"
-                   class="nav-link @if($isActive(request()->routeIs('monthly-reports.index'))) active @endif">
+                   class="nav-link @if(request()->routeIs('monthly-reports.*')) active @endif">
                     <i class="nav-icon fas fa-align-justify"></i>
                     <p>
                         {{ __('Monthly reports') }}

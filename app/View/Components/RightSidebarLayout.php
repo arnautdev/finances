@@ -25,9 +25,4 @@ class RightSidebarLayout extends Component
     {
         return view('components.right-sidebar-layout');
     }
-
-    public function isActive($isCurrentRoute)
-    {
-        return $isCurrentRoute;
-    }
 }
