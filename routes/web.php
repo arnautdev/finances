@@ -22,12 +22,18 @@ Route::namespace('App\Http\Controllers\\')
     ->middleware(['auth:sanctum', 'verified'])
     ->group(function () {
 
-//        Route::get('/home', function () {
-//            return view('dashboard');
-//        })->name('dashboard');
-
         Route::get('/home', 'DashboardController@index')->name('dashboard');
         Route::resource('expenses', 'ExpensesController');
         Route::resource('monthly-reports', 'MonthlyReportsController');
         Route::resource('expenses-categories', 'ExpensesCategoriesController');
     });
+
+//Route::namespace('App\Http\Controllers\\')
+//    ->prefix('auth')
+//    ->middleware(['auth:sanctum', 'verified'])
+//    ->group(function () {
+//
+//        Route::resource('login', 'ExpensesController');
+//        Route::resource('register', 'MonthlyReportsController');
+//        Route::resource('reset-password', 'ExpensesCategoriesController');
+//    });
