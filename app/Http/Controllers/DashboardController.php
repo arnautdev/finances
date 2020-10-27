@@ -14,8 +14,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        dd($this->dispatch(new AutoAddMonthlyExpensesJob()));
-
         return view('dashboard.index');
     }
 
