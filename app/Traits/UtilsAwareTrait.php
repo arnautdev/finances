@@ -10,7 +10,7 @@ trait UtilsAwareTrait
      * Convert
      * @return float
      */
-    public function intToFloat($amount): float
+    public function intToFloat($amount)
     {
         if (strpos($amount, '.') !== false) {
             $amount = $this->floatToInt($amount);

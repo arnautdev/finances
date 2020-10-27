@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Traits\UtilsAwareTrait;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class PageServiceProvider extends ServiceProvider
 {
+    use UtilsAwareTrait;
+
     /**
      * Register services.
      *
@@ -50,6 +53,24 @@ class PageServiceProvider extends ServiceProvider
         $route = explode('.', $route);
         $route[1] = 'index';
         $route = implode('.', $route);
+        return route($route);
+    }
+
+
+    /**
+     * @param string $route
+     * @return string
+     */
+    public function getAction($action = 'index', $asString = true)
+    {
+        $route = Route::currentRouteName();
+        $route = explode('.', $route);
+        $route[1] = $action;
+        $route = implode('.', $route);
+
+        if ($asString) {
+            return $route;
+        }
         return route($route);
     }
 

@@ -25,4 +25,43 @@ class RightSidebarLayout extends Component
     {
         return view('components.right-sidebar-layout');
     }
+
+
+    /**
+     * Check if is dropdown is open
+     * @param array $routes
+     * @return string
+     */
+    public function isMenuOpen(array $routes): string
+    {
+        $isMenuOpen = '';
+        foreach ($routes as $route) {
+            if (request()->routeIs($route . '.*')) {
+                $isMenuOpen = 'menu-open';
+                break;
+            }
+        }
+
+        return $isMenuOpen;
+    }
+
+    /**
+     * @param array $routes
+     * @return string
+     */
+    public function isActive($routes): string
+    {
+        if (!is_array($routes)) {
+            $routes = [$routes];
+        }
+        $isActive = '';
+        foreach ($routes as $route) {
+            if (request()->routeIs($route . '.*')) {
+                $isActive = 'active';
+                break;
+            }
+        }
+
+        return $isActive;
+    }
 }

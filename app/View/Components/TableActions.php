@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Checkbox extends Component
+class TableActions extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Checkbox extends Component
      */
     public function render()
     {
-        return view('components.form.checkbox');
+        return view('components.table-actions');
     }
 }

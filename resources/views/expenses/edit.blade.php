@@ -1,31 +1,35 @@
 <x-dashboard-layout>
+
     <div class="card card-info card-outline">
         <div class="card-header">
-            <h3 class="card-title">{{ __('Create expense') }}</h3>
+            <h3 class="card-title">{{ __('Eidt expense :title', ['title' => $data['expense']->title]) }}</h3>
         </div><!-- End ./header -->
 
         <div class="card-body">
 
             <div class="form-horizontal form-bordered">
-                {{ Form::open(['route' => 'expenses.store', 'data-parsley-validate' => 'true']) }}
-
+                {{ Form::open(['route' => ['expenses.update', $data['expense']->id], 'data-parsley-validate' => 'true']) }}
+                @method('PUT')
                 <x-form.submit-buttons></x-form.submit-buttons>
 
                 {{ $form->input([
                     'name' => 'title',
                     'label' => 'Expense title',
-                    'required' => true
+                    'required' => true,
+                    'model' => 'expense'
                 ]) }}
 
                 {{ $form->select([
                     'name' => 'categoryId',
                     'label' => 'Category',
-                    'options' => $data['categories']
+                    'options' => $data['categories'],
+                    'model' => 'expense'
                 ]) }}
 
                 {{ $form->select([
                     'name' => 'expenseType',
                     'label' => 'Type',
+                    'model' => 'expense',
                     'options' => [
                         'monthly' => __('Monthly'),
                         'dynamic' => __('Dynamic'),
@@ -35,7 +39,8 @@
                 {{ $form->amount([
                     'name' => 'amount',
                     'label' => 'Amount',
-                    'required' => true
+                    'required' => true,
+                    'model' => 'expense'
                 ]) }}
 
                 <x-form.submit-buttons></x-form.submit-buttons>
@@ -45,4 +50,5 @@
 
         </div><!-- End ./body -->
     </div><!-- End ./card -->
+
 </x-dashboard-layout>

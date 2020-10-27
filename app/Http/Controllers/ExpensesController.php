@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExpenseCategory;
+use App\Models\Expenses;
+use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
 
 class ExpensesController extends Controller
 {
+    use UtilsAwareTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +18,10 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        return view('expenses.index');
+        $userId = auth()->id();
+        $data['expenses'] = Expenses::where('userId', '=', $userId)->get();
+
+        return view('expenses.index', compact('data'));
     }
 
     /**
@@ -23,7 +31,10 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        return view('expenses.create');
+        $userId = auth()->id();
+        $data['categories'] = (new ExpenseCategory)->getSelectedOptions($userId);
+
+        return view('expenses.create', compact('data'));
     }
 
     /**
@@ -34,18 +45,13 @@ class ExpensesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = $this->validateData($request);
+        $expense = Expenses::create($data);
+        if ($expense->exists) {
+            $redirectUrl = route('expenses.edit', $expense->id);
+            return redirect($redirectUrl)->with('success', __('success-create-message'));
+        }
+        return back()->with('error', __('error-create-message'));
     }
 
     /**
@@ -54,9 +60,14 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expenses $expense)
     {
-        //
+        $userId = auth()->id();
+
+        $data['expense'] = $expense;
+        $data['categories'] = (new ExpenseCategory)->getSelectedOptions($userId);
+
+        return view('expenses.edit', compact('data'));
     }
 
     /**
@@ -66,9 +77,13 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expenses $expense)
     {
-        //
+        $data = $this->validateData($request);
+        if ($expense->update($data)) {
+            return back()->with('success', __('success-update-message'));
+        }
+        return back()->with('error', __('error-update-message'));
     }
 
     /**
@@ -77,8 +92,29 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expenses $expense)
     {
-        //
+        if ($expense->exists && $expense->delete()) {
+            return back()->with('success', __('success-delete-message'));
+        }
+        return back()->with('error', __('error-delete-message'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    private function validateData(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required|min:3|string',
+            'categoryId' => 'required|numeric',
+            'expenseType' => 'required',
+            'dynamicAmount' => 'nullable',
+            'amount' => 'required',
+        ]);
+        $data['amount'] = $this->floatToInt($data['amount']);
+        return $data;
     }
 }

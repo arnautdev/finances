@@ -13,10 +13,27 @@
                 <tr>
                     <th>{{ __('Title') }}</th>
                     <th>{{ __('Amount') }}</th>
+                    <th>{{ __('Category') }}</th>
                     <th>{{ __('Created') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
                 </thead>
+
+                <tbody>
+                @if(isset($data['expenses']))
+                    @foreach($data['expenses'] as $expense)
+                        <tr>
+                            <td>{{ $expense->title }}</td>
+                            <td>{{ $page->intToFloat($expense->amount) }}</td>
+                            <td>{{ $expense->getCategory()->title }}</td>
+                            <td>{{ $expense->created_at }}</td>
+                            <td>
+                                <x-table-actions id="{{ $expense->id }}"></x-table-actions>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
             </table>
         </div><!-- End ./body -->
     </div><!-- End ./card -->

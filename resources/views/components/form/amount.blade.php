@@ -11,15 +11,15 @@
 
     $inputValue = '';
     if(isset($data[$name])){
-        $inputValue = $data[$name];
+        $inputValue = $page->intToFloat($data[$name]);
     }
 
     if(isset($model) && isset($data[$model][$name])){
-        $inputValue = $data[$model][$name];
+        $inputValue = $page->intToFloat($data[$model][$name]);
     }
 
     if(old($name)){
-        $inputValue = old($name);
+        $inputValue = $page->intToFloat(old($name));
     }
 @endphp
 
