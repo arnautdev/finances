@@ -112,6 +112,7 @@ class ExpensesController extends Controller
             'categoryId' => 'required|numeric',
             'expenseType' => 'required',
             'dynamicAmount' => 'nullable',
+            'isAutoAdd' => 'nullable',
             'amount' => 'required',
         ]);
         $data['amount'] = $this->floatToInt($data['amount']);

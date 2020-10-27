@@ -22,6 +22,7 @@ class Expenses extends Model
         'expenseType',
         'dynamicAmount',
         'amount',
+        'isAutoAdd'
     ];
 
     /**
@@ -38,6 +39,15 @@ class Expenses extends Model
     }
 
     /**
+     * Get user
+     * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getUser()
+    {
+        return $this->belongsTo(User::class, 'userId', 'id')->firstOrFail();
+    }
+
+    /**
      * Get category
      * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo|object|null
      */
@@ -45,7 +55,6 @@ class Expenses extends Model
     {
         return $this->belongsTo(ExpenseCategory::class, 'categoryId', 'id')->first();
     }
-
 
     /**
      * Check if is dynamic amount
