@@ -14,7 +14,8 @@ class ExpensesCategoriesController extends Controller
      */
     public function index()
     {
-        $data['categories'] = ExpenseCategory::all();
+        $userId = auth()->id();
+        $data['categories'] = ExpenseCategory::where('userId', '=', $userId)->get();
 
         return view('expenses-categories.index', compact('data'));
     }
