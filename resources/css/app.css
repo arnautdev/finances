@@ -5,6 +5,13 @@
 @import "bootstrap.css";
 @import "../admin-lte/css/adminlte.css";
 
+.no-radius {
+    border-radius: 0px !important;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
 
 .parsley-error {
     background: #fff !important;

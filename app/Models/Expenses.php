@@ -39,6 +39,18 @@ class Expenses extends Model
     }
 
     /**
+     * Get expenses list
+     * @return mixed
+     */
+    public function getExpensesList()
+    {
+        $userId = auth()->id();
+        return $this->where('userId', '=', $userId)
+            ->whereIn('expenseType', ['static', 'dynamic'])
+            ->get();
+    }
+
+    /**
      * Get user
      * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo
      */

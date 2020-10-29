@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AutoAddMonthlyExpensesJob;
+use App\Models\Expenses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -14,7 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data['expensesList'] = (new Expenses())->getExpensesList();
+
+        return view('dashboard.index', compact('data'));
     }
 
     /**

@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->job(new AutoAddMonthlyExpensesJob())->everyMinute();
+        $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '8:00');
     }
 
     /**

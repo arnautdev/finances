@@ -59,6 +59,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getMonthlyExpenses()
+    {
+        return $this->hasMany(MonthlyExpenses::class, 'userId', 'id');
+    }
 
     /**
      * Get expenses
@@ -67,15 +75,5 @@ class User extends Authenticatable
     public function getExpenses()
     {
         return $this->hasMany(Expenses::class, 'userId', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getMonthlyExpenses()
-    {
-        return $this->hasMany(Expenses::class, 'userId', 'id')
-            ->where('expenseType', '=', 'monthly')
-            ->get();
     }
 }

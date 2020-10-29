@@ -10,8 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
-class AutoAddMonthlyExpensesJob // implements ShouldQueue
+class AutoAddMonthlyExpensesJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -41,7 +42,19 @@ class AutoAddMonthlyExpensesJob // implements ShouldQueue
                 ->get();
 
             if ($expenses->count() > 0) {
-                $user->notify(new ExpensesIsAddedNotification($expenses));
+
+                $createMany = $expenses->map(function ($row) {
+                    return [
+                        'userId' => $row->userId,
+                        'expenseId' => $row->id,
+                        'amount' => $row->amount,
+                    ];
+                });
+
+                if ($user->getMonthlyExpenses()->createMany($createMany)) {
+                    $user->notify(new ExpensesIsAddedNotification($expenses));
+                }
+                Log::error(__METHOD__ . ' Error add expenses for user: ' . $user->id);
             }
         }
     }

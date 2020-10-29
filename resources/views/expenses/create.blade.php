@@ -29,6 +29,7 @@
                     'options' => [
                         'monthly' => __('Monthly'),
                         'dynamic' => __('Dynamic'),
+                        'static' => __('Static'),
                     ]
                 ]) }}
 

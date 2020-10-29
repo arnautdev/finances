@@ -26,6 +26,7 @@ Route::namespace('App\Http\Controllers\\')
         Route::resource('expenses', 'ExpensesController');
         Route::resource('monthly-reports', 'MonthlyReportsController');
         Route::resource('expenses-categories', 'ExpensesCategoriesController');
+        Route::resource('add-expense', 'AddExpenseController');
     });
 
 //Route::namespace('App\Http\Controllers\\')
