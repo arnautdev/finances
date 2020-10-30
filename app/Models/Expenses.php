@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UserIdFilterScopeAwareTrait;
 use App\Traits\UtilsAwareTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Expenses extends Model
 {
-    use HasFactory, SoftDeletes, UtilsAwareTrait;
+    use HasFactory, SoftDeletes, UtilsAwareTrait, UserIdFilterScopeAwareTrait;
 
 
     /**
@@ -44,10 +45,7 @@ class Expenses extends Model
      */
     public function getExpensesList()
     {
-        $userId = auth()->id();
-        return $this->where('userId', '=', $userId)
-            ->whereIn('expenseType', ['static', 'dynamic'])
-            ->get();
+        return $this->whereIn('expenseType', ['static', 'dynamic'])->get();
     }
 
     /**
@@ -82,10 +80,8 @@ class Expenses extends Model
      * @param int $userId
      * @return int
      */
-    public function getStaticExpensesAmount(int $userId): int
+    public function getStaticExpensesAmount(): int
     {
-        return $this->where('userId', '=', $userId)
-            ->where('expenseType', '=', 'monthly')
-            ->sum('amount');
+        return $this->where('expenseType', '=', 'monthly')->sum('amount');
     }
 }

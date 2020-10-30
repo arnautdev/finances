@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Scopes\UserIdFilterScope;
+use App\Traits\UserIdFilterScopeAwareTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MonthlyExpenses extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, UserIdFilterScopeAwareTrait;
 
 
     /**
@@ -28,11 +30,7 @@ class MonthlyExpenses extends Model
      */
     public function getTodayAdded()
     {
-        $userId = auth()->id();
-
-        return $this->where('userId', '=', $userId)
-            ->where('toDate', '=', date('Y-m-d'))
-            ->get();
+        return $this->where('toDate', '=', date('Y-m-d'))->get();
     }
 
     /**

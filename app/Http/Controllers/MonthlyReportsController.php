@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MonthlyExpenses;
 use Illuminate\Http\Request;
 
 class MonthlyReportsController extends Controller
@@ -13,7 +14,9 @@ class MonthlyReportsController extends Controller
      */
     public function index()
     {
-        return view('monthly-reports.index');
+        $data['monthlyExpenses'] = MonthlyExpenses::all();
+
+        return view('monthly-reports.index', compact('data'));
     }
 
     /**
