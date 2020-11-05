@@ -46,6 +46,7 @@ class AutoAddMonthlyExpensesJob implements ShouldQueue
                 $createMany = $expenses->map(function ($row) {
                     return [
                         'userId' => $row->userId,
+                        'categoryId' => $row->categoryId,
                         'expenseId' => $row->id,
                         'amount' => $row->amount,
                     ];

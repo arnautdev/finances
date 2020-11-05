@@ -31,14 +31,15 @@ Route::namespace('App\Http\Controllers\\')
 
         Route::resource('expenses-categories', 'ExpensesCategoriesController');
         Route::resource('add-expense', 'AddExpenseController');
-    });
 
-//Route::namespace('App\Http\Controllers\\')
-//    ->prefix('auth')
-//    ->middleware(['auth:sanctum', 'verified'])
-//    ->group(function () {
-//
-//        Route::resource('login', 'ExpensesController');
-//        Route::resource('register', 'MonthlyReportsController');
-//        Route::resource('reset-password', 'ExpensesCategoriesController');
-//    });
+
+        // get user unread notifications
+        Route::get('/notifications', function () {
+            $user = auth()->user();
+            return [
+                'countUnreadNotifications' => $user->unreadNotifications()->count(),
+                'notifications' => $user->unreadNotifications()->take(5)->get()
+            ];
+        });
+        Route::get('/notifications/all', 'NotificationsController@index')->name('notifications.all');
+    });
