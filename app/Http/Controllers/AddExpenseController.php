@@ -70,6 +70,7 @@ class AddExpenseController extends Controller
         return $request->validate([
             'userId' => 'required|numeric',
             'expenseId' => 'required|numeric',
+            'categoryId' => 'required|numeric',
             'amount' => 'required|numeric',
             'toDate' => 'nullable',
         ]);

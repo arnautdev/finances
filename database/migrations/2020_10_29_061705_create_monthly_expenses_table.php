@@ -20,11 +20,13 @@ class CreateMonthlyExpensesTable extends Migration
 
             $table->bigInteger('userId')->unsigned();
             $table->bigInteger('expenseId')->unsigned();
+            $table->bigInteger('categoryId')->unsigned();
             $table->date('toDate')->default(\Carbon\Carbon::now());
             $table->integer('amount')->default(0);
 
             $table->foreign('userId')->references('id')->on('users');
             $table->foreign('expenseId')->references('id')->on('expenses');
+            $table->foreign('categoryId')->references('id')->on('expense_categories');
         });
     }
 

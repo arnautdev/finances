@@ -18,8 +18,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $userId = auth()->id();
-        $data['expenses'] = Expenses::where('userId', '=', $userId)->orderBy('id', 'DESC')->get();
+        $data['expenses'] = Expenses::orderBy('id', 'DESC')->get();
 
         return view('expenses.index', compact('data'));
     }

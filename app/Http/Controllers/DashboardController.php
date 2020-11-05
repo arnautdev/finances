@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Jobs\AutoAddMonthlyExpensesJob;
 use App\Models\Expenses;
+use App\Models\MonthlyExpenses;
+use App\Models\SystemSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +18,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $systemSettings = new SystemSettings();
+        $systemSettings->addSettingsKey('startUseDate', date('Y-m-d'));
+
         $data['expensesList'] = (new Expenses())->getExpensesList();
+        $data['addedToday'] = (new MonthlyExpenses())->getTodayAdded();
+
+        $data['averagePerDay'] = (new MonthlyExpenses())->getAveragePerDay();
 
         return view('dashboard.index', compact('data'));
     }

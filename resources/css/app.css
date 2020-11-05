@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import "bootstrap.css";
+@import "../admin-lte/plugins/daterangepicker/daterangepicker.css";
 @import "../admin-lte/css/adminlte.css";
 
 .no-radius {

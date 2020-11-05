@@ -8,7 +8,7 @@
 
             <div class="form-horizontal form-bordered">
                 {{ Form::open(['route' => ['expenses-categories.update', $data['category']->id], 'data-parsley-validate' => 'true']) }}
-
+                @method('PUT')
                 <x-form.submit-buttons></x-form.submit-buttons>
 
                 {{ $form->input([

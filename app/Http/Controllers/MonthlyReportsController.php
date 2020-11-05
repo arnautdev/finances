@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExpenseCategory;
 use App\Models\MonthlyExpenses;
+use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
 
 class MonthlyReportsController extends Controller
 {
+    use UtilsAwareTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +18,21 @@ class MonthlyReportsController extends Controller
      */
     public function index()
     {
-        $data['monthlyExpenses'] = MonthlyExpenses::all();
+        $data['categories'] = ExpenseCategory::all();
+        $data['monthlyExpenses'] = MonthlyExpenses::filterBy(\request()->all())->get();
+        $data['totalSpentAmount'] = MonthlyExpenses::filterBy(\request()->all())->sum('amount');
 
         return view('monthly-reports.index', compact('data'));
+    }
+
+    /**
+     * @param ExpenseCategory $category
+     */
+    public function showByCategory(ExpenseCategory $category)
+    {
+        $data['category'] = $category;
+        $data['categoryExpenses'] = $category->getMonthlyExpenses(\request());
+        return view('monthly-reports.category', compact('data'));
     }
 
     /**

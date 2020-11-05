@@ -15,7 +15,10 @@ try {
     window.$ = window.jQuery = require('jquery/dist/jquery')
 
     require('bootstrap/dist/js/bootstrap');
+    require('../admin-lte/plugins/daterangepicker/daterangepicker')
+
     require('../admin-lte/js/adminlte')
+    require('../admin-lte/js/customs')
 
     // parsley validator
     require('parsleyjs');
