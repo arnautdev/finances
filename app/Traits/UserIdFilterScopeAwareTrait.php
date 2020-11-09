@@ -14,10 +14,12 @@ trait UserIdFilterScopeAwareTrait
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($row) {
-            $userId = auth()->id();
-            $row->userId = $userId;
+            if (is_null($row->userId)) {
+                $userId = auth()->id();
+                $row->userId = $userId;
+            }
         });
     }
 
