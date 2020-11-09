@@ -19,17 +19,6 @@ class SystemSettings extends Model
         'settingsValue'
     ];
 
-    /**
-     *
-     */
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->userId = auth()->id();
-        });
-    }
-
 
     /**
      * @param $key

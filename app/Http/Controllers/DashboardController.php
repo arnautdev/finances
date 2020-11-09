@@ -6,6 +6,7 @@ use App\Jobs\AutoAddMonthlyExpensesJob;
 use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Models\SystemSettings;
+use App\Models\TodoList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -23,8 +24,9 @@ class DashboardController extends Controller
 
         $data['expensesList'] = (new Expenses())->getExpensesList();
         $data['addedToday'] = (new MonthlyExpenses())->getTodayAdded();
-
         $data['averagePerDay'] = (new MonthlyExpenses())->getAveragePerDay();
+
+        $data['todoList'] = (new TodoList())->getTodoList();
 
         return view('dashboard.index', compact('data'));
     }

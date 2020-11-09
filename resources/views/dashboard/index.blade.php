@@ -67,6 +67,7 @@
     </div>
 
     <div class="row">
+
         <div class="col-lg-6">
             <div class="card card-info card-outline">
                 <div class="card-header">
@@ -95,8 +96,8 @@
                 </div><!-- End ./body -->
             </div><!-- End ./card -->
 
-        </div><!-- End ./col-lg-6 -->
-
+        </div>
+        <!-- End ./col-lg-6 -->
 
         <div class="col-lg-6">
             <div class="card card-info card-outline">
@@ -129,8 +130,85 @@
                     </table>
                 </div><!-- End ./body -->
             </div><!-- End ./card -->
-        </div><!-- End ./col-lg-6 -->
+        </div>
+        <!-- End ./col-lg-6 -->
 
-    </div><!-- End ./row -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="ion ion-clipboard mr-1"></i>
+                        {{ __('To Do List') }}
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body" style="max-height: 400px;overflow-x: scroll;">
+                    <ul class="todo-list ui-sortable" data-widget="todo-list">
+
+                        @foreach($data['todoList'] as $todoList)
+                            <li class="{{ $todoList->isDone() ? 'done' : '' }}">
+                                <span class="handle ui-sortable-handle">
+                                      <i class="fas fa-ellipsis-v"></i>
+                                      <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <!-- checkbox -->
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox"
+                                           id="todoCheck{{ $loop->index }}"
+                                           data-url="{{ route('todo.markAsDone', $todoList->id) }}"
+                                           data-id="{{ $todoList->id }}"
+                                           @if($todoList->isDone())
+                                           checked="checked"
+                                        @endif
+                                    >
+                                    <label for="todoCheck{{ $loop->index }}" class="markAsDone"></label>
+                                </div>
+                                <!-- todo text -->
+                                <span class="text">{{ $todoList->description }}</span>
+                                <!-- Emphasis label -->
+                                <small class="badge badge-info">
+                                    <i class="far fa-clock"></i> {{ $todoList->created_at }}
+                                </small>
+                                <!-- General tools such as edit or delete-->
+                                <div class="tools">
+                                    <i class="fas fa-edit edit-todo-row"
+                                       data-url="{{ route('todo.edit', $todoList->id) }}"
+                                       data-id="{{ $todoList->id }}"
+                                    ></i>
+                                    <i class="fas fa-trash destroy-todo-row"
+                                       data-url="{{ route('todo.destroy', $todoList->id) }}"
+                                    ></i>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer clearfix">
+                    {{ Form::open(['route' => 'todo.store', 'data-parsley-validate' => 'true']) }}
+
+                    <div class="form-group">
+                        <textarea type="text"
+                                  name="description"
+                                  required="required"
+                                  class="form-control"
+                                  placeholder="{{ __('Task description') }}"
+                                  maxlength="500"
+                        ></textarea>
+                    </div><!-- End ./form-group -->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-info">
+                            <i class="fas fa-plus"></i> {{ __('Add item') }}
+                        </button>
+                    </div><!-- End ./form-group -->
+
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+        <!-- End ./col-lg-6 -->
+    </div>
+    <!-- End ./row -->
 
 </x-dashboard-layout>
