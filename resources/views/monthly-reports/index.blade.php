@@ -46,17 +46,22 @@
 
                         <tbody>
                         @foreach($data['categories'] as $category)
-                            <tr>
-                                <td>{{ $category->title }}</td>
-                                <td>{{ $page->intToFloat($category->getMonthlyExpenses(request())->sum('amount')) }}</td>
-                                <td>
-                                    <a href="{{ route('monthly-reports.category', $category->id) }}"
-                                       class="btn btn-xs btn-default">
-                                        <i class="fa fa-arrow-right"></i>&nbsp;
-                                        {{ __('more info') }}
-                                    </a>
-                                </td>
-                            </tr>
+                            @php
+                                $totalCategoryAmount = $page->intToFloat($category->getMonthlyExpenses(request())->sum('amount'));
+                            @endphp
+                            @if($totalCategoryAmount > 0)
+                                <tr>
+                                    <td>{{ $category->title }}</td>
+                                    <td>{{ $totalCategoryAmount }}</td>
+                                    <td>
+                                        <a href="{{ route('monthly-reports.category', $category->id) }}"
+                                           class="btn btn-xs btn-default">
+                                            <i class="fa fa-arrow-right"></i>&nbsp;
+                                            {{ __('more info') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
 
                         <tr>
