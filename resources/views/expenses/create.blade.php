@@ -11,6 +11,11 @@
 
                 <x-form.submit-buttons></x-form.submit-buttons>
 
+                {{ $form->checkbox([
+                    'name' => 'isAutoAdd',
+                    'label' => 'Is auto add'
+                ]) }}
+
                 {{ $form->input([
                     'name' => 'title',
                     'label' => 'Expense title',

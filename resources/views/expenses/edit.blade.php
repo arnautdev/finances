@@ -12,6 +12,12 @@
                 @method('PUT')
                 <x-form.submit-buttons></x-form.submit-buttons>
 
+                {{ $form->checkbox([
+                    'name' => 'isAutoAdd',
+                    'label' => 'Is auto add',
+                    'model' => 'expense'
+                ]) }}
+
                 {{ $form->input([
                     'name' => 'title',
                     'label' => 'Expense title',

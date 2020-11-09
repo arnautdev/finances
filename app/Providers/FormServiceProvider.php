@@ -86,6 +86,15 @@ class FormServiceProvider extends ServiceProvider
         return $this->$name();
     }
 
+    /**
+     * @param array $args
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function checkbox($args = [])
+    {
+        $this->data = array_merge($this->data, $args);
+        return view($this->namespace . '.checkbox', $this->data);
+    }
 
     /**
      * @param array $args
