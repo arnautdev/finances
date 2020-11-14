@@ -63,6 +63,14 @@ class MonthlyExpenses extends Model
     }
 
     /**
+     * @return float
+     */
+    public function getAmount(): float
+    {
+        return $this->intToFloat($this->amount);
+    }
+
+    /**
      * Calculate average per day
      */
     public function getAveragePerDay()

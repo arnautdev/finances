@@ -52,14 +52,12 @@ var destroyTodo = function () {
     }
 };
 
-//Date range picker
 $('#reservation').daterangepicker({
     locale: {
         format: 'YYYY-MM-DD'
     }
 });
 
-//Date range picker with time picker
 $('#reservationtime').daterangepicker({
     timePicker: true,
     timePickerIncrement: 30,
@@ -68,7 +66,6 @@ $('#reservationtime').daterangepicker({
     }
 });
 
-// jQuery UI sortable for the todo list
 $('.todo-list').sortable({
     placeholder: 'sort-highlight',
     handle: '.handle',

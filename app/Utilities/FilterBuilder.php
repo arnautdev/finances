@@ -41,6 +41,9 @@ class FilterBuilder
     {
         if (!empty($this->filters)) {
             foreach ($this->filters as $name => $value) {
+                if ($name == 'page') {
+                    continue;
+                }
                 $normailizedName = ucfirst($name);
                 $class = $this->namespace . "\\{$normailizedName}";
 
