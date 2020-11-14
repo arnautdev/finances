@@ -32,8 +32,8 @@
                     'name' => 'expenseType',
                     'label' => 'Type',
                     'options' => [
-                        'dynamic' => __('Dynamic'),
                         'static' => __('Static'),
+                        'dynamic' => __('Dynamic')
                     ]
                 ]) }}
 
