@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\ExpenseCategory;
+use App\Models\TodoList;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,9 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(10)
+            ->has(TodoList::factory()->count(7))
+            ->has(ExpenseCategory::factory()->count(10))
+            ->create();
 
-        $this->call(TodoListSeeder::class);
-        $this->call(ExpensesCategorySeeder::class);
+
+        $users = User::all();
+        foreach ($users as $user) {
+            $this->callWith(ExpensesSeeder::class, ['user' => $user]);
+            $this->callWith(MonthlyExpensesSeeder::class, ['user' => $user]);
+        }
+
     }
 }

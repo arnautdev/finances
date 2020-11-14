@@ -14,6 +14,7 @@
                     <th>{{ __('Title') }}</th>
                     <th>{{ __('Amount') }}</th>
                     <th>{{ __('Type') }}</th>
+                    <th>{{ __('Monthly') }}</th>
                     <th>{{ __('Category') }}</th>
                     <th>{{ __('Created') }}</th>
                     <th>{{ __('Actions') }}</th>
@@ -27,6 +28,7 @@
                             <td>{{ $expense->title }}</td>
                             <td>{{ $page->intToFloat($expense->amount) }}</td>
                             <td>{{ __(ucfirst($expense->expenseType)) }}</td>
+                            <td>{{ __(ucfirst($expense->isAutoAdd)) }}</td>
                             <td>{{ $expense->getCategory()->title }}</td>
                             <td>{{ $expense->created_at }}</td>
                             <td>

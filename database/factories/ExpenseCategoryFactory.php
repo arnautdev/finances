@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ExpenseCategory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExpenseCategoryFactory extends Factory
@@ -22,7 +23,7 @@ class ExpenseCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'userId' => 1,
+//            'userId' => User::factory(),
             'title' => $this->faker->text(19)
         ];
     }

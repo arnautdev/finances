@@ -14,7 +14,7 @@
 
                 {{ $form->checkbox([
                     'name' => 'isAutoAdd',
-                    'label' => 'Is auto add',
+                    'label' => 'Monthly',
                     'model' => 'expense'
                 ]) }}
 
@@ -37,7 +37,6 @@
                     'label' => 'Type',
                     'model' => 'expense',
                     'options' => [
-                        'monthly' => __('Monthly'),
                         'dynamic' => __('Dynamic'),
                         'static' => __('Static'),
                     ]

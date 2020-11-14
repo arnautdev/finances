@@ -121,6 +121,7 @@
                         </thead>
                         <tbody>
                         @foreach($data['addedToday'] as $expense)
+
                             <tr>
                                 <td>{{ $expense->getExpense()->title }}</td>
                                 <td>{{ $page->intToFloat($expense->amount) }}</td>
@@ -142,7 +143,7 @@
                     </h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body" style="max-height: 400px;overflow-x: scroll;">
+                <div class="card-body" >
                     <ul class="todo-list ui-sortable" data-widget="todo-list">
 
                         @foreach($data['todoList'] as $todoList)

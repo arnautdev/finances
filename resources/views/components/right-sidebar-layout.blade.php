@@ -75,6 +75,16 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('yearly-preview.index') }}"
+                   class="nav-link @if(request()->routeIs('yearly-preview.*')) active @endif">
+                    <i class="nav-icon fas fa-align-justify"></i>
+                    <p>
+                        {{ __('Yearly reports') }}
+                    </p>
+                </a>
+            </li>
+
         </ul>
     </nav>
 </div>

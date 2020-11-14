@@ -76,4 +76,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expenses::class, 'userId', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function todoList()
+    {
+        return $this->hasMany(TodoList::class, 'userId', 'id');
+    }
+
+    public function expenseCategory()
+    {
+        return $this->hasMany(ExpenseCategory::class, 'userId', 'id');
+    }
+
+    public function expense()
+    {
+        return $this->hasMany(Expenses::class, 'userId', 'id');
+    }
+
+    public function monthlyExpense()
+    {
+        return $this->hasMany(MonthlyExpenses::class, 'userId', 'id');
+    }
 }

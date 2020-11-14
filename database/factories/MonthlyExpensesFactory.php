@@ -2,19 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\TodoList;
+use App\Models\ExpenseCategory;
+use App\Models\Expenses;
+use App\Models\MonthlyExpenses;
 use App\Models\User;
-use Faker\Generator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TodoListFactory extends Factory
+class MonthlyExpensesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = TodoList::class;
+    protected $model = MonthlyExpenses::class;
 
     /**
      * Define the model's default state.
@@ -25,8 +26,10 @@ class TodoListFactory extends Factory
     {
         return [
 //            'userId' => User::factory(),
-            'description' => $this->faker->text,
-            'isDone' => $this->faker->randomElement(['no', 'yes'])
+//            'expenseId' => Expenses::factory(),
+//            'categoryId' => ExpenseCategory::factory(),
+            'toDate' => $this->faker->dateTimeThisMonth(),
+            'amount' => $this->faker->numberBetween(100, 10000)
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\UserIdFilterScope;
 use App\Traits\UserIdFilterScopeAwareTrait;
+use App\Traits\UtilsAwareTrait;
 use App\Utilities\FilterBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,8 @@ class MonthlyExpenses extends Model
 {
     use HasFactory,
         SoftDeletes,
-        UserIdFilterScopeAwareTrait;
+        UserIdFilterScopeAwareTrait,
+        UtilsAwareTrait;
 
 
     /**

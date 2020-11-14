@@ -68,4 +68,39 @@ trait UtilsAwareTrait
         }
         return false;
     }
+
+    /**
+     * @param $args
+     * @param string $format
+     * @return array
+     */
+    public function createLabels($args, $format = 'Y-m-d')
+    {
+        if (!isset($args['from']) || !isset($args['to'])) {
+            return [];
+        }
+
+        // if fromDate equal or large from the To Date
+        if ($this->sDate($args['from'])->format('Y-m-d') >= $this->sDate($args['to'])->format('Y-m-d')) {
+            return [];
+        }
+
+        $step = '+1 day';
+        if (isset($args['step'])) {
+            $step = $args['step'];
+        }
+
+        $startDate = $this->sDate($args['from']);
+        $endDate = $this->sDate($args['to'])->format('Y-m-d');
+
+        $cout = [];
+        do {
+            $cout[] = $startDate->format('Y-m-d');
+            $startDate = $startDate->modify($step);
+        } while ($startDate->format('Y-m-d') <= $endDate);
+
+//        array_push($cout, $startDate->format('Y-m-d'));
+        return $cout;
+    }
+
 }

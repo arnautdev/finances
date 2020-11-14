@@ -27,6 +27,14 @@ class Expenses extends Model
     ];
 
     /**
+     * @return mixed
+     */
+    public function getStaticMonthlyExpenses()
+    {
+        return $this->where('isAutoAdd', '=', 'yes')->get();
+    }
+
+    /**
      * Get expenses list
      * @return mixed
      */
@@ -70,5 +78,14 @@ class Expenses extends Model
     public function getStaticExpensesAmount(): int
     {
         return $this->where('expenseType', '=', 'monthly')->sum('amount');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function expenseCategory()
+    {
+        return $this->belongsTo(ExpenseCategory::class, 'categoryId', 'id');
     }
 }
