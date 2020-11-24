@@ -23,7 +23,7 @@ class ExpensesFactory extends Factory
     {
         return [
             'title' => $this->faker->text(10),
-            'expenseType' => $this->faker->randomElement(['monthly', 'dynamic', 'static']),
+            'expenseType' => $this->faker->randomElement(['dynamic', 'static']),
             'dynamicAmount' => $this->faker->randomElement(['no', 'yes']),
             'amount' => $this->faker->numberBetween(100, 1000),
             'isAutoAdd' => $this->faker->randomElement(['no', 'yes'])
