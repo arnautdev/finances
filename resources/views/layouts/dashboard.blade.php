@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <title>{{ config('app.name') }} | Starter</title>
+    <title>{{ config('app.name') }} | </title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
@@ -29,6 +29,13 @@
 
         <!-- Right navbar links -->
         <notifications></notifications>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
+                {{ __('Logout') }}
+            </button>
+        </form>
     </nav>
     <!-- /.navbar -->
 
@@ -94,13 +101,13 @@
     <!-- /.content-wrapper -->
 
     <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-            <h5>Title</h5>
-            <p>Sidebar content</p>
-        </div>
-    </aside>
+{{--    <aside class="control-sidebar control-sidebar-dark">--}}
+{{--        <!-- Control sidebar content goes here -->--}}
+{{--        <div class="p-3">--}}
+{{--            <h5>Title</h5>--}}
+{{--            <p>Sidebar content</p>--}}
+{{--        </div>--}}
+{{--    </aside>--}}
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
