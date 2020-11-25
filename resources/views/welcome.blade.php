@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box" id="dashboard-container">
     <div class="login-logo">
         <a href="{{ route('welcome') }}">
@@ -78,7 +79,7 @@
                 <a href="forgot-password.html">{{ __('I forgot my password') }}</a>
             </p>
             <p class="mb-0">
-                <a href="register.html" class="text-center">{{ __('Register a new membership') }}</a>
+                <a href="{{ route('register') }}" class="text-center">{{ __('Register a new membership') }}</a>
             </p>
         </div>
         <!-- /.login-card-body -->
