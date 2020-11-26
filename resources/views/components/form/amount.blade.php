@@ -24,31 +24,53 @@
 @endphp
 
 <div>
-    <div class="form-group row">
-        <label for="{{ $name }}" class="col-sm-3 col-form-label text-right">
-            {{ $label }}
-        </label>
-        <div class="col-sm-7">
-            <input type="{{ $type }}"
-                   name="{{ $name }}"
-                   placeholder="{{ $placeholder }}"
-                   id="{{ $name }}"
-                   class="form-control {{  $class }}"
 
-                   @if(isset($required))
-                   required="required"
-            @endif
+    @if(isset($onlyInput) && $onlyInput == true)
+        <input type="{{ $type }}"
+               name="{{ $name }}"
+               placeholder="{{ $placeholder }}"
+               id="{{ $name }}"
+               class="form-control {{  $class }}"
 
-            @if(isset($attrs))
-                @foreach($attrs as $key => $val)
-                    {{ $key }}="{{ $val }}"
-                @endforeach
-            @endif
+               @if(isset($required))
+               required="required"
+    @endif
 
-            value="{{ $inputValue }}"
-            />
+    @if(isset($attrs))
+        @foreach($attrs as $key => $val)
+            {{ $key }}="{{ $val }}"
+        @endforeach
+    @endif
 
-            <small class="err-msg">{{ $errors->first($name) }}</small>
-        </div>
-    </div><!-- End ./form-group -->
+    value="{{ $inputValue }}"
+    />
+    @else
+        <div class="form-group row">
+            <label for="{{ $name }}" class="col-sm-3 col-form-label text-right">
+                {{ $label }}
+            </label>
+            <div class="col-sm-7">
+                <input type="{{ $type }}"
+                       name="{{ $name }}"
+                       placeholder="{{ $placeholder }}"
+                       id="{{ $name }}"
+                       class="form-control {{  $class }}"
+
+                       @if(isset($required))
+                       required="required"
+                @endif
+
+                @if(isset($attrs))
+                    @foreach($attrs as $key => $val)
+                        {{ $key }}="{{ $val }}"
+                    @endforeach
+                @endif
+
+                value="{{ $inputValue }}"
+                />
+
+                <small class="err-msg">{{ $errors->first($name) }}</small>
+            </div>
+        </div><!-- End ./form-group -->
+    @endif
 </div>

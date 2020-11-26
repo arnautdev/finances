@@ -23,6 +23,7 @@ class MonthlyExpenses extends Model
      * @var array
      */
     public $fillable = [
+        'title',
         'userId',
         'expenseId',
         'categoryId',
@@ -38,6 +39,7 @@ class MonthlyExpenses extends Model
         parent::boot();
         static::creating(function ($row) {
             $row->toDate = date('Y-m-d');
+            $row->amount = $row->floatToInt($row->amount);
         });
     }
 
@@ -124,6 +126,12 @@ class MonthlyExpenses extends Model
      */
     public function getExpense()
     {
-        return $this->belongsTo(Expenses::class, 'expenseId', 'id')->firstOrFail();
+        $expense = $this->belongsTo(Expenses::class, 'expenseId', 'id')->firstOrNew();
+        if (!$expense->exists) {
+            $expense->title = $this->title;
+            $expense->categoryId = $this->categoryId;
+        }
+
+        return $expense;
     }
 }

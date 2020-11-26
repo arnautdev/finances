@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AutoAddMonthlyExpensesJob;
+use App\Models\ExpenseCategory;
 use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Models\SystemSettings;
@@ -27,6 +28,8 @@ class DashboardController extends Controller
         $data['averagePerDay'] = (new MonthlyExpenses())->getAveragePerDay();
 
         $data['todoList'] = (new TodoList())->getTodoList();
+
+        $data['categories'] = (new ExpenseCategory)->getSelectedOptions();
 
         return view('dashboard.index', compact('data'));
     }

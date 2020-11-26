@@ -112,6 +112,49 @@
                 </div><!-- End ./header -->
 
                 <div class="card-body">
+                    <div class="form-group">
+                        {{ Form::open(['route' => 'add-expense.store']) }}
+                        <input type="hidden" name="userId" value="{{ auth()->id() }}">
+                        <div class="form-group">
+                            {{ $form->input([
+                                'onlyInput' => true,
+                                'name' => 'title',
+                                'attrs' => [
+                                    'required' => 'required'
+                                ]
+                            ]) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ $form->select([
+                                'onlyInput' => true,
+                                'emptyOption' => true,
+                                'name' => 'categoryId',
+                                'options' => $data['categories'],
+                                'attrs' => [
+                                    'required' => 'required'
+                                ]
+
+                            ]) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ $form->amount([
+                                'onlyInput' => true,
+                                'name' => 'amount',
+                                'attrs' => [
+                                    'required' => 'required'
+                                ]
+                            ]) }}
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-info">{{ __('Add') }}</button>
+                        </div>
+
+                        {{ Form::close() }}
+                    </div>
+
                     <table class="table table-striped table-bordered">
                         <thead>
                         <tr>
@@ -143,7 +186,7 @@
                     </h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body" >
+                <div class="card-body">
                     <ul class="todo-list ui-sortable" data-widget="todo-list">
 
                         @foreach($data['todoList'] as $todoList)

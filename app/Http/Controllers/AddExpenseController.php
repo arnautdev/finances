@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\MonthlyExpenses;
+use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
 
 class AddExpenseController extends Controller
 {
+    use UtilsAwareTrait;
+
     /**
      * Store a newly created resource in storage.
      *
@@ -69,10 +72,11 @@ class AddExpenseController extends Controller
     {
         return $request->validate([
             'userId' => 'required|numeric',
-            'expenseId' => 'required|numeric',
+            'expenseId' => 'nullable',
             'categoryId' => 'required|numeric',
             'amount' => 'required|numeric',
             'toDate' => 'nullable',
+            'title' => 'nullable',
         ]);
     }
 }
