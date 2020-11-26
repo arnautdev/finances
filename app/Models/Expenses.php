@@ -40,7 +40,7 @@ class Expenses extends Model
      */
     public function getExpensesList()
     {
-        return $this->whereIn('expenseType', ['static', 'dynamic'])->get();
+        return $this->whereIn('expenseType', ['static', 'dynamic'])->where('isAutoAdd', '!=', 'yes')->get();
     }
 
     /**
