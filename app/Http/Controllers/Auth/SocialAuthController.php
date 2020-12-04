@@ -34,7 +34,7 @@ class SocialAuthController extends Controller
      */
     public function callback($service)
     {
-        $redirectUrl = route('/');
+        $redirectUrl = route('dashboard');
         try {
             // override default redirect
             $this->overrideRedirectUri($service);

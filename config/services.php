@@ -35,7 +35,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID', 645312875910145),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET', '0a3595bb371e4b50a546cd2052f4dc92'),
-        'redirect' => 'http://127.0.0.1:8000/dashboard',
+        'redirect' => 'http://finance.dmitry-arnaut.com/dashboard',
     ],
 
     'google' => [
