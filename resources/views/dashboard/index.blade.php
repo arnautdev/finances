@@ -27,10 +27,7 @@
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                    (spent amount / days of use the system)
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
+                <a href="#" class="small-box-footer">&nbsp;</a>
             </div>
         </div>
         <!-- ./col -->
@@ -82,7 +79,8 @@
                                     <input type="hidden" name="userId" value="{{ auth()->id() }}">
                                     <input type="hidden" name="expenseId" value="{{ $expense->id }}">
                                     <input type="hidden" name="categoryId" value="{{ $expense->categoryId }}">
-                                    <input type="hidden" name="amount" value="{{ $page->intToFloat($expense->amount) }}">
+                                    <input type="hidden" name="amount"
+                                           value="{{ $page->intToFloat($expense->amount) }}">
 
                                     <button type="submit" class="btn btn-default h-100 w-100 no-radius">
                                         {{ $expense->title }}<br>
