@@ -60,7 +60,7 @@ class SocialAuthController extends Controller
                 $data['randPassword'] = $randPassword;
                 $data['password'] = Hash::make($randPassword);
                 $createdUser = (new User())->create($data);
-                if (auth('client')->loginUsingId($createdUser->id)) {
+                if (auth()->loginUsingId($createdUser->id)) {
                     return redirect($redirectUrl)->with('success', __('Welcome back :name', ['name' => $createdUser->name]));
                 }
             }
