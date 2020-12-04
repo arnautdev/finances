@@ -82,7 +82,7 @@
                                     <input type="hidden" name="userId" value="{{ auth()->id() }}">
                                     <input type="hidden" name="expenseId" value="{{ $expense->id }}">
                                     <input type="hidden" name="categoryId" value="{{ $expense->categoryId }}">
-                                    <input type="hidden" name="amount" value="{{ $expense->amount }}">
+                                    <input type="hidden" name="amount" value="{{ $page->intToFloat($expense->amount) }}">
 
                                     <button type="submit" class="btn btn-default h-100 w-100 no-radius">
                                         {{ $expense->title }}<br>

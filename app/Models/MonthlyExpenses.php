@@ -9,6 +9,7 @@ use App\Utilities\FilterBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class MonthlyExpenses extends Model
 {
@@ -80,7 +81,13 @@ class MonthlyExpenses extends Model
         $startUseSystem = (new SystemSettings())->getSettingsKey('startUseDate');
         $dateDiff = date_diff(new \DateTime($startUseSystem), new \DateTime());
 
-        $spentAmount = intval($this->sum('amount'));
+        $amount = DB::table('monthly_expenses')
+            ->join('expenses', function ($join) {
+                $join->on('monthly_expenses.expenseId', '=', 'expenses.id')
+                    ->where('expenses.isAutoAdd', '=', 'no');
+            })
+            ->sum('monthly_expenses.amount');
+        $spentAmount = intval($amount);
 
         if ($spentAmount == 0 || $dateDiff->days == 0) {
             return 0;
