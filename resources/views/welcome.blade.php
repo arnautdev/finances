@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <x-facebook-sdk></x-facebook-sdk>
 </head>
 <body class="hold-transition login-page">
 
@@ -66,7 +68,7 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>{{ __('- OR -') }}</p>
-                <a href="#" class="btn btn-block btn-primary">
+                <a href="auth/facebook" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i> {{ __('Sign in using Facebook') }}
                 </a>
                 <a href="#" class="btn btn-block btn-danger">

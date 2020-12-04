@@ -33,9 +33,9 @@ return [
     /// More info about use
     /// https://laravel.com/docs/8.x/socialite
     'facebook' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://your-callback-url',
+        'client_id' => env('FACEBOOK_CLIENT_ID', 768312663796692),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET', '52b1cd1dcce2bce4a12c02602eaa5f5b'),
+        'redirect' => 'http://127.0.0.1:8000/dashboard',
     ],
 
     'google' => [

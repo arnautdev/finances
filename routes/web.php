@@ -46,3 +46,7 @@ Route::namespace('App\Http\Controllers\\')
         });
         Route::get('/notifications/all', 'NotificationsController@index')->name('notifications.all');
     });
+
+Auth::routes();
+Route::get('auth/{service}', 'App\Http\Controllers\Auth\SocialAuthController@redirect');
+Route::get('auth/{service}/callback', 'App\Http\Controllers\Auth\SocialAuthController@callback');
