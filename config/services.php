@@ -33,8 +33,8 @@ return [
     /// More info about use
     /// https://laravel.com/docs/8.x/socialite
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID', 768312663796692),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET', '52b1cd1dcce2bce4a12c02602eaa5f5b'),
+        'client_id' => env('FACEBOOK_CLIENT_ID', 645312875910145),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET', '0a3595bb371e4b50a546cd2052f4dc92'),
         'redirect' => 'http://127.0.0.1:8000/dashboard',
     ],
 
