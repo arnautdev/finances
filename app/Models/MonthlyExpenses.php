@@ -86,6 +86,7 @@ class MonthlyExpenses extends Model
                 $join->on('monthly_expenses.expenseId', '=', 'expenses.id')
                     ->where('expenses.isAutoAdd', '=', 'no');
             })
+            ->where('monthly_expenses.userId', '=', auth()->id())
             ->sum('monthly_expenses.amount');
         $spentAmount = intval($amount);
 
