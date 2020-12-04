@@ -42,9 +42,7 @@ class SocialAuthController extends Controller
             $user = Socialite::driver($service)->user();
             $data['socialId'] = $user->getId();
             $data['socialSource'] = ucfirst($service);
-            $dbUser = (new User())->row([
-                'email' => $user->getEmail()
-            ]);
+            $dbUser = User::where('email', '=', $user->getEmail())->first();
             if ($dbUser->exists()) {
                 $dbUser->update($data);
                 if (auth()->loginUsingId($dbUser->id)) {
