@@ -47,7 +47,7 @@ class SocialAuthController extends Controller
             ]);
             if ($dbUser->exists()) {
                 $dbUser->update($data);
-                if (auth('client')->loginUsingId($dbUser->id)) {
+                if (auth()->loginUsingId($dbUser->id)) {
                     return redirect($redirectUrl)->with('success', __('Welcome back :name', ['name' => $dbUser->name]));
                 }
             } else {
