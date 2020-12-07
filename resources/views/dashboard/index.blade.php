@@ -65,7 +65,7 @@
 
     <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 h-100">
             <div class="card card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title">{{ __('Predefined expenses') }}</h3>
@@ -74,7 +74,7 @@
                     <div class="row">
                         @if(isset($data['expensesList']))
                             @foreach($data['expensesList'] as $expense)
-                                <div class="col-lg-3 no-padding">
+                                <div class="col-lg-3 col-6 no-padding">
                                     {{ Form::open(['route' => 'add-expense.store']) }}
                                     <input type="hidden" name="userId" value="{{ auth()->id() }}">
                                     <input type="hidden" name="expenseId" value="{{ $expense->id }}">
@@ -174,7 +174,10 @@
             </div><!-- End ./card -->
         </div>
         <!-- End ./col-lg-6 -->
+    </div>
+    <!-- End ./row -->
 
+    <div class="row">
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header ui-sortable-handle" style="cursor: move;">

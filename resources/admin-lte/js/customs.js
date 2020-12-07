@@ -52,11 +52,15 @@ var destroyTodo = function () {
     }
 };
 
-$('#reservation').daterangepicker({
-    locale: {
-        format: 'YYYY-MM-DD'
-    }
-});
+$daterangepicker = document.getElementById('daterangepicker');
+if ($daterangepicker !== null) {
+    console.log('initrange picker');
+    $($daterangepicker).daterangepicker({
+        locale: {
+            format: 'YYYY-MM-DD'
+        }
+    });
+}
 
 $('#reservationtime').daterangepicker({
     timePicker: true,

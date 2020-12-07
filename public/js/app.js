@@ -1940,11 +1940,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderNotifications",
   data: function data() {
@@ -66949,34 +66944,11 @@ var render = function() {
           ],
           2
         )
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link",
-          attrs: {
-            "data-widget": "control-sidebar",
-            "data-slide": "true",
-            href: "#",
-            role: "button"
-          }
-        },
-        [_c("i", { staticClass: "fas fa-th-large" })]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -81011,11 +80983,17 @@ var destroyTodo = function destroyTodo() {
   }
 };
 
-$('#reservation').daterangepicker({
-  locale: {
-    format: 'YYYY-MM-DD'
-  }
-});
+$daterangepicker = document.getElementById('daterangepicker');
+
+if ($daterangepicker !== null) {
+  console.log('initrange picker');
+  $($daterangepicker).daterangepicker({
+    locale: {
+      format: 'YYYY-MM-DD'
+    }
+  });
+}
+
 $('#reservationtime').daterangepicker({
   timePicker: true,
   timePickerIncrement: 30,
@@ -89882,8 +89860,7 @@ try {
 
   __webpack_require__(/*! ../admin-lte/js/adminlte */ "./resources/admin-lte/js/adminlte.js");
 
-  __webpack_require__(/*! ../admin-lte/js/customs */ "./resources/admin-lte/js/customs.js"); // parsley validator
-
+  __webpack_require__(/*! ../admin-lte/js/customs */ "./resources/admin-lte/js/customs.js");
 
   __webpack_require__(/*! parsleyjs */ "./node_modules/parsleyjs/dist/parsley.js");
 

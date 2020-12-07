@@ -9,6 +9,16 @@ class TodoListController extends Controller
 {
 
     /**
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index()
+    {
+        $data['todolist'] = TodoList::filterBy(\request()->all())->orderBy('id', 'DESC')->get();
+
+        return view('todolist.index', compact('data'));
+    }
+
+    /**
      * @param TodoList $todo
      * @return bool[]|false[]
      */

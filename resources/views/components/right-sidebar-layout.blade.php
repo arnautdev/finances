@@ -85,6 +85,17 @@
                 </a>
             </li>
 
+
+            <li class="nav-item">
+                <a href="{{ route('todo.index') }}"
+                   class="nav-link @if(request()->routeIs('todo.*')) active @endif">
+                    <i class="nav-icon fas fa-align-justify"></i>
+                    <p>
+                        {{ __('TODO List') }}
+                    </p>
+                </a>
+            </li>
+
         </ul>
     </nav>
 </div>

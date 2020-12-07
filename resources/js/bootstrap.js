@@ -14,14 +14,13 @@ try {
     window.Popper = require('popper.js/dist/popper')
     window.$ = window.jQuery = require('jquery/dist/jquery')
     require('../admin-lte/plugins/jquery-ui/jquery-ui.min.js');
-    
+
     require('bootstrap/dist/js/bootstrap');
     require('../admin-lte/plugins/daterangepicker/daterangepicker');
 
     require('../admin-lte/js/adminlte')
     require('../admin-lte/js/customs')
 
-    // parsley validator
     require('parsleyjs');
     require('parsleyjs/src/i18n/en');
     require('parsleyjs/src/i18n/bg');
