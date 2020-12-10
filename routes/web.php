@@ -32,6 +32,7 @@ Route::namespace('App\Http\Controllers\\')
 
         Route::resource('expenses-categories', 'ExpensesCategoriesController');
         Route::resource('add-expense', 'AddExpenseController');
+        Route::get('/add-expense/{expense}/setAmountModal', 'AddExpenseController@setAmountModal')->name('setAmountModal');
         Route::resource('todo', 'TodoListController');
         Route::post('/todo/{todo}/markAsDone', 'TodoListController@markAsDone')->name('todo.markAsDone');
 

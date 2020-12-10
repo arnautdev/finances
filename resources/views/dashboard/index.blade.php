@@ -75,18 +75,29 @@
                         @if(isset($data['expensesList']))
                             @foreach($data['expensesList'] as $expense)
                                 <div class="col-lg-3 col-6 no-padding">
-                                    {{ Form::open(['route' => 'add-expense.store']) }}
-                                    <input type="hidden" name="userId" value="{{ auth()->id() }}">
-                                    <input type="hidden" name="expenseId" value="{{ $expense->id }}">
-                                    <input type="hidden" name="categoryId" value="{{ $expense->categoryId }}">
-                                    <input type="hidden" name="amount"
-                                           value="{{ $page->intToFloat($expense->amount) }}">
+                                    @if(!$expense->isDynamicAmount())
+                                        {{ Form::open(['route' => 'add-expense.store']) }}
+                                        <input type="hidden" name="userId" value="{{ auth()->id() }}">
+                                        <input type="hidden" name="expenseId" value="{{ $expense->id }}">
+                                        <input type="hidden" name="categoryId" value="{{ $expense->categoryId }}">
+                                        <input type="hidden" name="amount"
+                                               value="{{ $page->intToFloat($expense->amount) }}">
 
-                                    <button type="submit" class="btn btn-default h-100 w-100 no-radius">
-                                        {{ $expense->title }}<br>
-                                        {{ $page->intToFloat($expense->amount) }}
-                                    </button>
-                                    {{ Form::close() }}
+                                        <button type="submit" class="btn btn-default h-100 w-100 no-radius">
+                                            {{ $expense->title }}<br>
+                                            {{ $page->intToFloat($expense->amount) }}
+                                        </button>
+                                        {{ Form::close() }}
+                                    @else
+                                        <a href="#set-amount" onclick="showSetAmountModal(this)"
+                                           data-url="{{ route('setAmountModal', $expense->id) }}"
+                                           class="btn btn-default h-100 w-100 no-radius"
+                                        >
+
+                                            {{ $expense->title }}<br>
+                                            {{ $page->intToFloat($expense->amount) }}
+                                        </a>
+                                    @endif
                                 </div><!-- End./col-lg -->
                             @endforeach
                         @endif
@@ -158,6 +169,7 @@
                         <tr>
                             <th>{{ __('Name') }}</th>
                             <th>{{ __('Amount') }}</th>
+                            <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -166,6 +178,14 @@
                             <tr>
                                 <td>{{ $expense->getExpense()->title }}</td>
                                 <td>{{ $page->intToFloat($expense->amount) }}</td>
+                                <td class="text-center">
+                                    {{ Form::open(['route' => ['add-expense.destroy', $expense->id]]) }}
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-xs" title="{{ __('Delete') }}">
+                                        <i class="fa fa-trash"></i>&nbsp;{{ __('Delete') }}
+                                    </button>
+                                    {{ Form::close() }}
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -255,5 +275,19 @@
         <!-- End ./col-lg-6 -->
     </div>
     <!-- End ./row -->
+
+    @push('scripts')
+        <script type="text/javascript">
+            function showSetAmountModal(el) {
+                var $targetUrl = $(el).data('url');
+                $.get($targetUrl, function ($resp) {
+                    console.log($resp);
+                    $('#set-amount-modal').remove();
+                    $('body').append($resp);
+                    $('#set-amount-modal').modal();
+                });
+            }
+        </script>
+    @endpush
 
 </x-dashboard-layout>

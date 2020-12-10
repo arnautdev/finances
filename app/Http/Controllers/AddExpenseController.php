@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
@@ -9,6 +10,15 @@ use Illuminate\Http\Request;
 class AddExpenseController extends Controller
 {
     use UtilsAwareTrait;
+
+    /**
+     * @param Expenses $expense
+     */
+    public function setAmountModal(Expenses $expense)
+    {
+        $data['expense'] = $expense;
+        return view('add-expenses.set-amount-modal', compact('data'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -24,29 +34,6 @@ class AddExpenseController extends Controller
             return back()->with('success', __('success-create-message'));
         }
         return back()->with('error', __('error-create-message'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(MonthlyExpenses $add_expense)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, MonthlyExpenses $add_expense)
-    {
-        //
     }
 
     /**
