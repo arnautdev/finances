@@ -75,7 +75,16 @@
                         @if(isset($data['expensesList']))
                             @foreach($data['expensesList'] as $expense)
                                 <div class="col-lg-3 col-6 no-padding">
-                                    @if(!$expense->isDynamicAmount())
+                                    @if($expense->isDynamicAmount())
+                                        <a href="#set-amount" onclick="showSetAmountModal(this)"
+                                           data-url="{{ route('setAmountModal', $expense->id) }}"
+                                           class="btn btn-default h-100 w-100 no-radius"
+                                        >
+
+                                            {{ $expense->title }}<br>
+                                            {{ $page->intToFloat($expense->amount) }}
+                                        </a>
+                                    @else
                                         {{ Form::open(['route' => 'add-expense.store']) }}
                                         <input type="hidden" name="userId" value="{{ auth()->id() }}">
                                         <input type="hidden" name="expenseId" value="{{ $expense->id }}">
@@ -88,15 +97,6 @@
                                             {{ $page->intToFloat($expense->amount) }}
                                         </button>
                                         {{ Form::close() }}
-                                    @else
-                                        <a href="#set-amount" onclick="showSetAmountModal(this)"
-                                           data-url="{{ route('setAmountModal', $expense->id) }}"
-                                           class="btn btn-default h-100 w-100 no-radius"
-                                        >
-
-                                            {{ $expense->title }}<br>
-                                            {{ $page->intToFloat($expense->amount) }}
-                                        </a>
                                     @endif
                                 </div><!-- End./col-lg -->
                             @endforeach
