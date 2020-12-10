@@ -4,14 +4,9 @@
         <div class="card-body">
             <form action="" method="get">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <input type="text"
-                               name="toDate"
-                               class="form-control"
-                               id="reservation"
-                               value="{{ request()->get('toDate', date('Y-m-01') . ' - ' . date('Y-m-d')) }}"
-                        />
-                    </div>
+                    {{ $form->custom([
+                        'filePath' => 'filters.date-range'
+                    ]) }}
                 </div><!-- End ./row -->
 
                 <div class="form-group"></div>

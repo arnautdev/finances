@@ -30,6 +30,9 @@ class Created_at implements FilterContract
     {
         $dates = explode(' - ', $value);
 
-        $this->query->where('created_at', '>=', $dates[0])->where('created_at', '<=', $dates[1]);
+        $this->query->where('created_at', '>=', $dates[0])
+            ->where('created_at', '<=', $dates[1])
+            ->orWhere('created_at', 'LIKE', $dates[0] . '%')
+            ->orWhere('created_at', 'LIKE', $dates[1] . '%');
     }
 }

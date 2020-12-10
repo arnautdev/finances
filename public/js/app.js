@@ -80921,7 +80921,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   !*** ./resources/admin-lte/js/customs.js ***!
   \*******************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var markAsDone = function markAsDone() {
   $(document).on('click', '.markAsDone', function () {
@@ -80982,37 +80985,30 @@ var destroyTodo = function destroyTodo() {
     });
   }
 };
-
-$daterangepicker = document.getElementById('daterangepicker');
-
-if ($daterangepicker !== null) {
-  console.log('initrange picker');
-  $($daterangepicker).daterangepicker({
-    locale: {
-      format: 'YYYY-MM-DD'
-    }
-  });
-}
-
-$('#reservationtime').daterangepicker({
-  timePicker: true,
-  timePickerIncrement: 30,
-  locale: {
-    format: 'MM/DD/YYYY hh:mm A'
-  }
-});
-$('.todo-list').sortable({
-  placeholder: 'sort-highlight',
-  handle: '.handle',
-  forcePlaceholderSize: true,
-  zIndex: 999999
-});
 /* Init functions */
+
 
 $(function () {
   editTodo();
   destroyTodo();
   markAsDone();
+  var $daterangepicker = document.getElementById('daterangepicker');
+
+  if ($daterangepicker !== null) {
+    console.log('initrange picker');
+    $($daterangepicker).daterangepicker({
+      locale: {
+        format: 'YYYY-MM-DD'
+      }
+    });
+  }
+
+  $('.todo-list').sortable({
+    placeholder: 'sort-highlight',
+    handle: '.handle',
+    forcePlaceholderSize: true,
+    zIndex: 999999
+  });
 });
 
 /***/ }),

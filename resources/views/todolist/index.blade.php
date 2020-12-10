@@ -3,14 +3,10 @@
         <div class="card-body">
             <form action="" method="get">
                 <div class="row">
-                    <div class="col-lg-3">
-                        <input type="text"
-                               name="created_at"
-                               class="form-control"
-                               id="daterangepicker"
-                               value="{{ request()->get('created_at', date('Y-m-01') . ' - ' . date('Y-m-d')) }}"
-                        />
-                    </div>
+                    {{ $form->custom([
+                        'filePath' => 'filters.date-range',
+                        'name' => 'created_at'
+                    ]) }}
                 </div><!-- End ./row -->
 
                 <div class="form-group"></div>

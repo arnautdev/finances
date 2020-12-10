@@ -178,6 +178,14 @@ class FormServiceProvider extends ServiceProvider
         return view($this->namespace . '.file', $this->data);
     }
 
+    public function custom($args = [])
+    {
+        $this->data = array_merge($this->data, $args);
+
+        $filePath = $args['filePath'];
+        return view('components.' . $filePath, $this->data);
+    }
+
     /**
      * @param array $args
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
