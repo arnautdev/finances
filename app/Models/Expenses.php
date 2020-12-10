@@ -67,7 +67,7 @@ class Expenses extends Model
      */
     public function isDynamicAmount()
     {
-        return $this->amount === 0;
+        return $this->amount == 0;
     }
 
 
