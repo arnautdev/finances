@@ -24,8 +24,9 @@ class TodoListFactory extends Factory
     public function definition()
     {
         return [
-//            'userId' => User::factory(),
+            'userId' => User::factory(),
             'description' => $this->faker->text,
+            'toDate' => $this->faker->dateTimeBetween('-2 month', 'now'),
             'isDone' => $this->faker->randomElement(['no', 'yes'])
         ];
     }

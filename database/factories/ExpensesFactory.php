@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\ExpenseCategory;
 use App\Models\Expenses;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 class ExpensesFactory extends Factory
 {
@@ -28,5 +31,20 @@ class ExpensesFactory extends Factory
             'amount' => $this->faker->numberBetween(100, 1000),
             'isAutoAdd' => $this->faker->randomElement(['no', 'yes'])
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function setForeignKeys()
+    {
+        return $this->state(function (array $attributes) {
+            $category = DB::table('expense_categories')->get()->random();
+
+            return [
+                'categoryId' => $category->id,
+                'userId' => $category->userId,
+            ];
+        });
     }
 }

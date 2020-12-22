@@ -7,6 +7,7 @@ use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 class MonthlyExpensesFactory extends Factory
 {
@@ -25,11 +26,24 @@ class MonthlyExpensesFactory extends Factory
     public function definition()
     {
         return [
-//            'userId' => User::factory(),
-//            'expenseId' => Expenses::factory(),
-//            'categoryId' => ExpenseCategory::factory(),
-            'toDate' => $this->faker->dateTimeThisMonth(),
+            'toDate' => $this->faker->dateTimeBetween('-12 month', 'now'),
             'amount' => $this->faker->numberBetween(100, 10000)
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function setForeignKeys()
+    {
+        return $this->state(function (array $attributes) {
+            $expense = DB::table('expenses')->get()->random();
+
+            return [
+                'expenseId' => $expense->id,
+                'categoryId' => $expense->categoryId,
+                'userId' => $expense->userId,
+            ];
+        });
     }
 }

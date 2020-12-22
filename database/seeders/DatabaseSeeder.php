@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\ExpenseCategory;
+use App\Models\Expenses;
+use App\Models\MonthlyExpenses;
 use App\Models\TodoList;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -21,12 +23,8 @@ class DatabaseSeeder extends Seeder
             ->has(ExpenseCategory::factory()->count(10))
             ->create();
 
+        Expenses::factory(98)->setForeignKeys()->create();
 
-        $users = User::all();
-        foreach ($users as $user) {
-            $this->callWith(ExpensesSeeder::class, ['user' => $user]);
-            $this->callWith(MonthlyExpensesSeeder::class, ['user' => $user]);
-        }
-
+        MonthlyExpenses::factory(20000)->setForeignKeys()->create();
     }
 }

@@ -23,7 +23,7 @@ class ExpenseCategoryFactory extends Factory
     public function definition()
     {
         return [
-//            'userId' => User::factory(),
+            'userId' => User::factory(),
             'title' => $this->faker->text(19)
         ];
     }
