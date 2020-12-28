@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::namespace('App\Http\Controllers\\User\\')
+    ->prefix('user')
+    ->middleware(['auth:sanctum', 'verified'])->group(function () {
+
+        Route::resource('profile', 'ProfileController');
+        Route::resource('change-password', 'ChangePasswordController');
+
+    });
+
 Route::namespace('App\Http\Controllers\\')
     ->prefix('dashboard')
     ->middleware(['auth:sanctum', 'verified'])
