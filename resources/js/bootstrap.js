@@ -11,16 +11,26 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 try {
-    window.Popper = require('popper.js/dist/popper')
-    window.$ = window.jQuery = require('jquery/dist/jquery')
-    require('../admin-lte/plugins/jquery-ui/jquery-ui.min.js');
 
-    require('bootstrap/dist/js/bootstrap');
-    require('../admin-lte/plugins/daterangepicker/daterangepicker');
+    window.Popper = require('admin-lte/plugins/popper/popper');
+    window.$ = window.jQuery = require('jquery/dist/jquery')
+    require('admin-lte/plugins/jquery-ui/jquery-ui.min');
+    require('admin-lte/plugins/bootstrap/js/bootstrap.bundle');
+
+    /// daterange picker
+    require('admin-lte/plugins/daterangepicker/daterangepicker');
+
+    /// datetimepicker
+    window.moment = require('moment/moment');
+    require('admin-lte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4');
+
+    require('admin-lte/plugins/select2/js/select2.full');
 
     require('../admin-lte/js/adminlte')
     require('../admin-lte/js/customs')
 
+
+    /// parsley js
     require('parsleyjs');
     require('parsleyjs/src/i18n/en');
     require('parsleyjs/src/i18n/bg');

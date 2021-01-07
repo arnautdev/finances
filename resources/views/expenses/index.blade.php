@@ -5,10 +5,10 @@
             <h3 class="card-title">{{ __('Added expenses') }}</h3>
         </div><!-- End ./header -->
 
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <x-form.index-buttons></x-form.index-buttons>
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-head-fixed text-nowrap">
                 <thead>
                 <tr>
                     <th>{{ __('Title') }}</th>

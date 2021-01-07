@@ -96,6 +96,16 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('goal.index') }}"
+                   class="nav-link @if(request()->routeIs('goal.*') || request()->routeIs('goal-action.*')) active @endif">
+                    <i class="nav-icon fas fa-align-justify"></i>
+                    <p>
+                        {{ __('My Goals') }}
+                    </p>
+                </a>
+            </li>
+
         </ul>
     </nav>
 </div>

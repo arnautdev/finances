@@ -108,6 +108,26 @@ class FormServiceProvider extends ServiceProvider
 
     /**
      * @param array $args
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function dateRange($args = [])
+    {
+        $this->data = array_merge($this->data, $args);
+        return view($this->namespace . '.date-range', $this->data);
+    }
+
+    /**
+     * @param array $args
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function select2($args = [])
+    {
+        $this->data = array_merge($this->data, $args);
+        return view($this->namespace . '.select2', $this->data);
+    }
+
+    /**
+     * @param array $args
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function amount($args = [])

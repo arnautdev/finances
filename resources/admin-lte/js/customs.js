@@ -55,7 +55,7 @@ var destroyTodo = function () {
 };
 
 /* Init functions */
-$(function () {
+$(document).ready(function () {
     editTodo();
     destroyTodo();
     markAsDone();
@@ -63,7 +63,6 @@ $(function () {
 
     var $daterangepicker = document.getElementById('daterangepicker');
     if ($daterangepicker !== null) {
-        console.log('initrange picker');
         $($daterangepicker).daterangepicker({
             locale: {
                 format: 'YYYY-MM-DD'

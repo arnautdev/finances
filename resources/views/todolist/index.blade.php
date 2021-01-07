@@ -27,8 +27,8 @@
             <h3 class="card-title">{{ __('Group by category') }}</h3>
         </div><!-- End ./header -->
 
-        <div class="card-body">
-            <table class="table table-striped table-bordered">
+        <div class="card-body table-responsive">
+            <table class="table table-striped table-bordered text-nowrap table-head-fixed">
                 <thead>
                 <tr>
                     <th>{{ __('Created At') }}</th>

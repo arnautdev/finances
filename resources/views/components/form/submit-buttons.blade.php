@@ -6,10 +6,18 @@
                 <i class="fa fa-save"></i>&nbsp;
                 {{ __('Save item') }}
             </button>
-            <a href="{{ $page->getCancelRoute() }}" class="btn btn-sm btn-default">
-                <i class="fa fa-arrow-circle-left"></i>&nbsp;
-                {{ __('Cancel') }}
-            </a>
+
+            @if(!is_null($attributes->get('cancelUrl')))
+                <a href="{{ $attributes->get('cancelUrl') }}" class="btn btn-sm btn-default">
+                    <i class="fa fa-arrow-circle-left"></i>&nbsp;
+                    {{ __('Back') }}
+                </a>
+            @else
+                <a href="{{ $page->getCancelRoute() }}" class="btn btn-sm btn-default">
+                    <i class="fa fa-arrow-circle-left"></i>&nbsp;
+                    {{ __('Cancel') }}
+                </a>
+            @endif
         </div><!-- End ./col-sm -->
     </div><!-- End ./form-group -->
 </div>

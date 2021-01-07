@@ -10,9 +10,17 @@
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <!-- Google Font: Source Sans Pro -->
+
+    <!-- Custom styles -->
+@stack('styles')
+
+<!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -32,7 +40,7 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
+            <button type="submit" class="btn btn-default">
                 {{ __('Logout') }}
             </button>
         </form>
@@ -70,6 +78,9 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        {{-- Flash messages --}}
+        <x-alert></x-alert>
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">

@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
 
         Expenses::factory(98)->setForeignKeys()->create();
 
-        MonthlyExpenses::factory(20000)->setForeignKeys()->create();
+        MonthlyExpenses::factory(1000)->setForeignKeys()->create();
+
+        $this->call([
+            GoalSeeder::class,
+        ]);
     }
 }
