@@ -21,7 +21,7 @@ class CreateGoalActionsTable extends Migration
             $table->string('title');
             $table->bigInteger('goalId')->unsigned();
             $table->dateTime('startDateTime')->nullable();
-            $table->char('weekDays', 10);
+            $table->char('weekDays', 20);
             $table->enum('addToTodoList', ['yes', 'no'])->default('no');
 
             $table->foreign('goalId')->references('id')->on('goals');
