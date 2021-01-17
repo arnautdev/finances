@@ -29,8 +29,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '8:00');
-
         $schedule->job(new AddGoalActionToTodoListJob())->dailyAt('5:00');
+
+
+        /// run queue
+        $schedule->command('queue:work --tries=3 --stop-when-empty')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**
