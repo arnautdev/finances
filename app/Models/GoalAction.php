@@ -41,4 +41,58 @@ class GoalAction extends Model
     {
         return $this->belongsTo(Goal::class, 'goalId', 'id');
     }
+
+    public function getWeekDaysNamesLabel(): string
+    {
+        $weekDaysNames = $this->getWeekDaysNames();
+
+        $strTemplate = '<button class="btn btn-default btn-xs">%s</button> ';
+        $out = '';
+
+        foreach ($weekDaysNames as $weekDay) {
+            $out .= sprintf($strTemplate, __($weekDay));
+        }
+
+        return $out;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeekDaysNames(): array
+    {
+        $weekDaysNames = [
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+            7 => 'Sunday'
+        ];
+
+        $this->weekDays = explode(',', $this->weekDays);
+        $out = [];
+
+        foreach ($this->weekDays as $weekDay) {
+            $out[] = $weekDaysNames[$weekDay];
+        }
+
+        return $out;
+    }
+
+
+    /**
+     * Check for add to today todo list
+     * @return bool
+     */
+    public function addToTodayTodoList(): bool
+    {
+        $today = date('l');
+        $allowedWeekDays = $this->getWeekDaysNames();
+        
+        return collect($allowedWeekDays)->contains($today);
+    }
+
 }
+

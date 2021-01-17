@@ -6,7 +6,7 @@
 
         <div class="card-body table-responsive">
             <x-form.index-buttons></x-form.index-buttons>
-            
+
             <table class="table table-striped table-bordered table-head-fixed text-nowrap">
                 <thead>
                 <tr>
@@ -21,16 +21,20 @@
                 <tbody>
                 @if(isset($data['goals']))
                     @foreach($data['goals'] as $goal)
+                        @php
+                            $progressPercent = $goal->getGoalProgressPercent();
+                        @endphp
                         <tr>
                             <td>{{ $goal->title }}</td>
                             <td>
                                 <div class="progress progress-sm active">
                                     <div class="progress-bar bg-success progress-bar-striped" role="progressbar"
-                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
+                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                                         style="width: {{ $progressPercent }}%">
+                                        <span class="sr-only">{{ $progressPercent }}% Complete</span>
                                     </div>
                                 </div>
-                                <small class="">20% Complete</small>
+                                <small class="">{{ $progressPercent }}% Complete</small>
                             </td>
                             <td>{{ $goal->startDate }}</td>
                             <td>{{ $goal->endDate }}</td>

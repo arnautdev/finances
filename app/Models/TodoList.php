@@ -16,6 +16,7 @@ class TodoList extends Model
      * @var string[]
      */
     public $fillable = [
+        'goalActionId',
         'userId',
         'description',
         'isDone'

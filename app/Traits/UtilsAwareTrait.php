@@ -95,7 +95,7 @@ trait UtilsAwareTrait
 
         $cout = [];
         do {
-            $cout[] = $startDate->format('Y-m-d');
+            $cout[] = $startDate->format($format);
             $startDate = $startDate->modify($step);
         } while ($startDate->format('Y-m-d') <= $endDate);
 

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\AddGoalActionToTodoListJob;
 use App\Jobs\AutoAddMonthlyExpensesJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '8:00');
+
+        $schedule->job(new AddGoalActionToTodoListJob())->dailyAt('5:00');
     }
 
     /**
