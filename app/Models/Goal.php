@@ -90,7 +90,8 @@ class Goal extends Model
      */
     private function getAddedGoalActionsCount(GoalAction $goalAction): int
     {
-        return TodoList::where('isDone', '=', 'yes')
+        return TodoList::withoutGlobalScopes()
+            ->where('isDone', '=', 'yes')
             ->where('goalActionId', '=', $goalAction->id)
             ->count();
     }
