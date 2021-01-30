@@ -36,7 +36,7 @@ class MarkGoalAsDoneJob implements ShouldQueue
         $goals->each(function ($goal, $key) {
             $progressPercent = $this->floatToInt($goal->getGoalProgressPercent());
             if ($progressPercent == 10000) {
-                $goal->save(['isDone' => 'yes']);
+                $goal->update(['isDone' => 'yes']);
             }
         });
     }

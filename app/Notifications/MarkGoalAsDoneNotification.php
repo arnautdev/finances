@@ -2,26 +2,30 @@
 
 namespace App\Notifications;
 
-use App\Mail\AddedExpensesEmail;
+use App\Mail\YourGoalIsDoneMail;
+use App\Models\Goal;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ExpensesIsAddedNotification extends Notification
+class MarkGoalAsDoneNotification extends Notification
 {
     use Queueable;
 
-    public $expenses;
+    /**
+     * @var
+     */
+    public $goal;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($expenses)
+    public function __construct(Goal $goal)
     {
-        $this->expenses = $expenses;
+        $this->goal = $goal;
     }
 
     /**
@@ -43,7 +47,7 @@ class ExpensesIsAddedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new AddedExpensesEmail($notifiable, $this->expenses))
+        return (new YourGoalIsDoneMail($notifiable, $this->goal))
             ->to($notifiable->email);
     }
 
@@ -56,9 +60,10 @@ class ExpensesIsAddedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => __('Monthly expenses is added.'),
-            'message' => __('You have :count static expenses and those is added to your new month.', [
-                'count' => $this->expenses->count()
+            'title' => 'Goal is done',
+            'message' => __('Hello, :name your goal :goalName is done our congratulations.', [
+                'name' => $notifiable->name,
+                'goalName' => $this->goal->title
             ])
         ];
     }

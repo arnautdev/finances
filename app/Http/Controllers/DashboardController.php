@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\AutoAddMonthlyExpensesJob;
 use App\Models\ExpenseCategory;
 use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
