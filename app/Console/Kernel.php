@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Jobs\AddGoalActionToTodoListJob;
 use App\Jobs\AutoAddMonthlyExpensesJob;
+use App\Jobs\MarkGoalAsDoneJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -30,6 +31,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '8:00');
         $schedule->job(new AddGoalActionToTodoListJob())->dailyAt('5:00');
+        $schedule->job(new MarkGoalAsDoneJob())->everyMinute();
 
 
         /// run queue
