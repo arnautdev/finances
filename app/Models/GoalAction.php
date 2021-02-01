@@ -71,6 +71,10 @@ class GoalAction extends Model
             7 => 'Sunday'
         ];
 
+        if (!$this->exists) {
+            return $weekDaysNames;
+        }
+
         $this->weekDays = explode(',', $this->weekDays);
         $out = [];
 
@@ -90,7 +94,7 @@ class GoalAction extends Model
     {
         $today = date('l');
         $allowedWeekDays = $this->getWeekDaysNames();
-        
+
         return collect($allowedWeekDays)->contains($today);
     }
 

@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class AutoAddMonthlyExpensesJob implements ShouldQueue
+class AutoAddMonthlyExpensesJob // implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -37,6 +37,7 @@ class AutoAddMonthlyExpensesJob implements ShouldQueue
 
         foreach ($users as $user) {
             $expenses = $user->getExpenses()
+                ->withoutGlobalScopes() /// disable global scopes
                 ->where('userId', '=', $user->id)
                 ->where('isAutoAdd', '=', 'yes')
                 ->get();

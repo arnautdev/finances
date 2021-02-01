@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '8:00');
+        $schedule->job(new AutoAddMonthlyExpensesJob())->monthlyOn(1, '12:00');
         $schedule->job(new AddGoalActionToTodoListJob())->dailyAt('5:00');
         $schedule->job(new MarkGoalAsDoneJob())->everyMinute();
 
