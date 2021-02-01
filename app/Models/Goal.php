@@ -64,7 +64,7 @@ class Goal extends Model
         $dateLabels = array_count_values($dateLabels);
 
         $goalAction = $this->goalAction()->firstOrNew([], []);
-        if (!$goalAction->exits) {
+        if (!$goalAction->exists) {
             return 0;
         }
         $goalActionWeekDays = $goalAction->getWeekDaysNames();
