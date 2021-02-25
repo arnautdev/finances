@@ -49,6 +49,10 @@
             <div class="col-sm-7">
                 <select name="{{ $name }}" id="{{ $name }}" class="form-control {{ $class }}">
                     @if(isset($options))
+                        @if(isset($emptyOption) && $emptyOption == true)
+                            <option value="all">{{ __('All') }}</option>
+                        @endif
+
                         @foreach($options as $optionId => $optionVal)
                             <option value="{{ $optionId }}"
                                     @if($inputValue == $optionId) selected="selected" @endif

@@ -21,11 +21,14 @@
     if(old($name)){
         $inputValue = old($name);
     }
+
+    if(!isset($typeInput)){
+        $typeInput = 'inline';
+    }
 @endphp
 
 <div>
-    @if(isset($onlyInput) && $onlyInput == true)
-
+    @if($typeInput == 'only' || (isset($onlyInput) && $onlyInput == true))
         <input type="{{ $type }}"
                name="{{ $name }}"
                placeholder="{{ $placeholder }}"
@@ -46,30 +49,10 @@
     />
     <small class="err-msg">{{ $errors->first($name) }}</small>
 
-    @elseif(isset($standartInput) && $standartInput == true)
-        <div class="form-group">
-            <label for="">{{ $label }}</label>
-            <input type="{{ $type }}"
-                   name="{{ $name }}"
-                   placeholder="{{ $placeholder }}"
-                   id="{{ $name }}"
-                   class="form-control {{  $class }}"
+    @endif
+<!-- End ./if only input -->
 
-                   @if(isset($required))
-                   required="required"
-            @endif
-
-            @if(isset($attrs))
-                @foreach($attrs as $key => $val)
-                    {{ $key }}="{{ $val }}"
-                @endforeach
-            @endif
-
-            value="{{ $inputValue }}"
-            />
-            <small class="err-msg">{{ $errors->first($name) }}</small>
-        </div>
-    @else
+    @if($typeInput == 'inline')
         <div class="form-group row">
             <label for="{{ $name }}" class="col-sm-3 col-form-label text-right">
                 {{ $label }}
@@ -97,6 +80,30 @@
                 <small class="err-msg">{{ $errors->first($name) }}</small>
             </div>
         </div><!-- End ./form-group -->
+    @endif
 
+    @if($typeInput == 'standart')
+        <div class="form-group">
+            <label for="">{{ $label }}</label>
+            <input type="{{ $type }}"
+                   name="{{ $name }}"
+                   placeholder="{{ $placeholder }}"
+                   id="{{ $name }}"
+                   class="form-control {{  $class }}"
+
+                   @if(isset($required))
+                   required="required"
+            @endif
+
+            @if(isset($attrs))
+                @foreach($attrs as $key => $val)
+                    {{ $key }}="{{ $val }}"
+                @endforeach
+            @endif
+
+            value="{{ $inputValue }}"
+            />
+            <small class="err-msg">{{ $errors->first($name) }}</small>
+        </div>
     @endif
 </div>

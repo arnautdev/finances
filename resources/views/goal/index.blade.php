@@ -1,4 +1,42 @@
 <x-dashboard-layout>
+
+    <div class="card card-info card-outline">
+        <div class="card-body">
+            <form action="" method="get">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="">{{ __('Is done') }}</label>
+                            {{ $form->select([
+                                'name' => 'isDone',
+                                'emptyOption' => true,
+                                'onlyInput' => true,
+                                'options' => [
+                                    'yes' => 'Yes',
+                                    'no' => 'No',
+                                ]
+                            ]) }}
+                        </div>
+                        <!-- End ./form-group -->
+                    </div>
+                    <!-- End ./col-lg-3 -->
+                </div>
+                <!-- End ./row -->
+
+                <div class="form-group"></div>
+                <button type="submit" class="btn btn-sm btn-info">
+                    <i class="fa fa-filter"></i>
+                    {{ __('Filter') }}
+                </button>
+                <a href="{{ url()->current()}}" class="btn btn-sm btn-danger">
+                    <i class="fa fa-refresh"></i>&nbsp;
+                    {{ __('Refresh') }}
+                </a>
+            </form>
+        </div><!-- End ./body -->
+    </div><!-- End ./card -->
+
+
     <div class="card card-info card-outline">
         <div class="card-header">
             <h3 class="card-title">{{ __('Goals') }}</h3>

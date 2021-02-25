@@ -14,7 +14,8 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $data['goals'] = Goal::all();
+        $data['goals'] = Goal::filterBy(request()->all())->get();
+
         return view('goal.index', compact('data'));
     }
 

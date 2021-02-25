@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\UserIdFilterScopeAwareTrait;
 use App\Traits\UtilsAwareTrait;
+use App\Utilities\FilterBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,10 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class Goal extends Model
 {
-    use HasFactory, UserIdFilterScopeAwareTrait, SoftDeletes, UtilsAwareTrait;
+    use HasFactory,
+        UserIdFilterScopeAwareTrait,
+        SoftDeletes,
+        UtilsAwareTrait;
 
     /**
      * @var string[]
@@ -23,6 +27,25 @@ class Goal extends Model
         'endDate',
         'isDone',
     ];
+
+    /**
+     * @param $query
+     * @param $filters
+     * @return mixed
+     * @throws \Exception
+     */
+    public function scopeFilterBy($query, $filters)
+    {
+        if (!isset($filters['isDone'])) {
+            $filters['isDone'] = 'no';
+        }
+
+        $namespace = basename(self::class);
+        $namespace = str_replace('Models', 'Utilities', $namespace);
+        $filter = new FilterBuilder($query, $filters, $namespace);
+
+        return $filter->apply();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
