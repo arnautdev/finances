@@ -1,0 +1,51 @@
+version: '3.1'
+
+services:
+  web:
+    build:
+      context: docker/web
+    environment:
+      - APACHE_USER=#1000
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    ports:
+      - 8080:80
+    working_dir: ${APP_PATH_CONTAINER}
+    links:
+      - node
+
+  db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  #  adminer:
+  #    image: adminer
+  #    restart: always
+  #    ports:
+  #      - 6080:8080
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 7080:80
+
+  composer:
+    image: composer
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+
+    working_dir: ${APP_PATH_CONTAINER}
+    command: composer install
+
+
+  node:
+    build:
+      context: docker/node
+
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    working_dir: ${APP_PATH_CONTAINER}
+
