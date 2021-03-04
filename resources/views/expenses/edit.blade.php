@@ -8,7 +8,7 @@
         <div class="card-body">
 
             <div class="form-horizontal form-bordered">
-                {{ Form::open(['route' => ['expenses.update', $data['expense']->id], 'data-parsley-validate' => 'true']) }}
+                {{ Form::open(['route' => ['expenses-settings.update', $data['expense']->id], 'data-parsley-validate' => 'true']) }}
                 @method('PUT')
                 <x-form.submit-buttons></x-form.submit-buttons>
 

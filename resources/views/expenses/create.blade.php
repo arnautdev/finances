@@ -7,7 +7,7 @@
         <div class="card-body">
 
             <div class="form-horizontal form-bordered">
-                {{ Form::open(['route' => 'expenses.store', 'data-parsley-validate' => 'true']) }}
+                {{ Form::open(['route' => 'expenses-settings.store', 'data-parsley-validate' => 'true']) }}
 
                 <x-form.submit-buttons></x-form.submit-buttons>
 

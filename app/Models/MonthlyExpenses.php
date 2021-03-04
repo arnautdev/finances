@@ -82,9 +82,9 @@ class MonthlyExpenses extends Model
         $dateDiff = date_diff(new \DateTime($startUseSystem), new \DateTime());
 
         $amount = DB::table('monthly_expenses')
-            ->join('expenses', function ($join) {
-                $join->on('monthly_expenses.expenseId', '=', 'expenses.id')
-                    ->where('expenses.isAutoAdd', '=', 'no');
+            ->join('expenses_settings', function ($join) {
+                $join->on('monthly_expenses.expenseId', '=', 'expenses_settings.id')
+                    ->where('expenses_settings.isAutoAdd', '=', 'no');
             })
             ->where('monthly_expenses.userId', '=', auth()->id())
             ->sum('monthly_expenses.amount');
@@ -134,7 +134,7 @@ class MonthlyExpenses extends Model
      */
     public function getExpense()
     {
-        $expense = $this->belongsTo(Expenses::class, 'expenseId', 'id')->firstOrNew();
+        $expense = $this->belongsTo(ExpensesSettings::class, 'expenseId', 'id')->firstOrNew();
         if (!$expense->exists) {
             $expense->title = $this->title;
             $expense->categoryId = $this->categoryId;

@@ -4,7 +4,6 @@
 namespace App\Utilities;
 
 
-use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Traits\UtilsAwareTrait;
 

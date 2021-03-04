@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Expenses extends Model
+class ExpensesSettings extends Model
 {
-    use HasFactory, SoftDeletes, UtilsAwareTrait, UserIdFilterScopeAwareTrait;
-
+    use HasFactory,
+        SoftDeletes,
+        UtilsAwareTrait,
+        UserIdFilterScopeAwareTrait;
 
     /**
      * @var array

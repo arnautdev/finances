@@ -44,7 +44,7 @@
 <div>
 
     @if($typeInput == 'inline')
-        <div class="form-group">
+        <div class="form-group row">
             <label for="{{ $name }}" class="col-sm-3 col-form-label text-right">
                 {{ $label }}
             </label>

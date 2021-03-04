@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\ExpenseCategory;
-use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpenseCategory;
-use App\Models\Expenses;
+use App\Models\ExpensesSettings;
 use App\Models\MonthlyExpenses;
 use App\Models\SystemSettings;
 use App\Models\TodoList;
@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $systemSettings = new SystemSettings();
         $systemSettings->addSettingsKey('startUseDate', date('Y-m-d'));
 
-        $data['expensesList'] = (new Expenses())->getExpensesList();
+        $data['expensesList'] = (new ExpensesSettings())->getExpensesList();
         $data['addedToday'] = (new MonthlyExpenses())->getTodayAdded();
         $data['averagePerDay'] = (new MonthlyExpenses())->getAveragePerDay();
 
@@ -31,71 +31,5 @@ class DashboardController extends Controller
         $data['categories'] = (new ExpenseCategory)->getSelectedOptions();
 
         return view('dashboard.index', compact('data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

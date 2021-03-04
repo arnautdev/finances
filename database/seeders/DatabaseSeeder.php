@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ExpenseCategory;
-use App\Models\Expenses;
 use App\Models\MonthlyExpenses;
 use App\Models\TodoList;
 use App\Models\User;

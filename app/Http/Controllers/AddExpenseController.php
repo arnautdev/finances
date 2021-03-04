@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Expenses;
+use App\Models\ExpensesSettings;
 use App\Models\MonthlyExpenses;
 use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class AddExpenseController extends Controller
     /**
      * @param Expenses $expense
      */
-    public function setAmountModal(Expenses $expense)
+    public function setAmountModal(ExpensesSettings $expense)
     {
         $data['expense'] = $expense;
         return view('add-expenses.set-amount-modal', compact('data'));

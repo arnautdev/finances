@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\Expenses;
 use App\Models\User;
 use App\Notifications\ExpensesIsAddedNotification;
+use App\Traits\UtilsAwareTrait;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class AutoAddMonthlyExpensesJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, UtilsAwareTrait;
 
     /**
      * Create a new job instance.
@@ -49,7 +49,7 @@ class AutoAddMonthlyExpensesJob implements ShouldQueue
                         'userId' => $row->userId,
                         'categoryId' => $row->categoryId,
                         'expenseId' => $row->id,
-                        'amount' => $row->amount,
+                        'amount' => $this->intToFloat($row->amount),
                     ];
                 });
 

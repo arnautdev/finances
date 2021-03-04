@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpenseCategory;
-use App\Models\Expenses;
+use App\Models\ExpensesSettings;
 use App\Traits\UtilsAwareTrait;
 use Illuminate\Http\Request;
 
-class ExpensesController extends Controller
+class ExpensesSettingsController extends Controller
 {
     use UtilsAwareTrait;
 
@@ -18,7 +18,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $data['expenses'] = Expenses::orderBy('id', 'DESC')->get();
+        $data['expenses'] = ExpensesSettings::orderBy('id', 'DESC')->get();
 
         return view('expenses.index', compact('data'));
     }
@@ -45,9 +45,9 @@ class ExpensesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateData($request);
-        $expense = Expenses::create($data);
+        $expense = ExpensesSettings::create($data);
         if ($expense->exists) {
-            $redirectUrl = route('expenses.edit', $expense->id);
+            $redirectUrl = route('expenses-settings.edit', $expense->id);
             return redirect($redirectUrl)->with('success', __('success-create-message'));
         }
         return back()->with('error', __('error-create-message'));
@@ -59,11 +59,11 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Expenses $expense)
+    public function edit(ExpensesSettings $expenses_setting)
     {
         $userId = auth()->id();
 
-        $data['expense'] = $expense;
+        $data['expense'] = $expenses_setting;
         $data['categories'] = (new ExpenseCategory)->getSelectedOptions($userId);
 
         return view('expenses.edit', compact('data'));
@@ -76,10 +76,10 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expenses $expense)
+    public function update(Request $request, ExpensesSettings $expenses_setting)
     {
         $data = $this->validateData($request);
-        if ($expense->update($data)) {
+        if ($expenses_setting->update($data)) {
             return back()->with('success', __('success-update-message'));
         }
         return back()->with('error', __('error-update-message'));
@@ -91,9 +91,9 @@ class ExpensesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expenses $expense)
+    public function destroy(ExpensesSettings $expenses_setting)
     {
-        if ($expense->exists && $expense->delete()) {
+        if ($expenses_setting->exists && $expenses_setting->delete()) {
             return back()->with('success', __('success-delete-message'));
         }
         return back()->with('error', __('error-delete-message'));

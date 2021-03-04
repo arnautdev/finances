@@ -72,7 +72,7 @@ class User extends Authenticatable
      */
     public function getExpenses()
     {
-        return $this->hasMany(Expenses::class, 'userId', 'id');
+        return $this->hasMany(ExpensesSettings::class, 'userId', 'id');
     }
 
     /**
@@ -90,7 +90,7 @@ class User extends Authenticatable
 
     public function expense()
     {
-        return $this->hasMany(Expenses::class, 'userId', 'id');
+        return $this->hasMany(ExpensesSettings::class, 'userId', 'id');
     }
 
     public function monthlyExpense()

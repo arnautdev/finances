@@ -34,7 +34,8 @@ Route::namespace('App\Http\Controllers\\')
         Route::get('/home', 'DashboardController@index')->name('dashboard');
         Route::resource('goal', 'GoalController');
         Route::resource('goal-action', 'GoalActionController');
-        Route::resource('expenses', 'ExpensesController');
+//        Route::resource('expenses', 'ExpensesController');
+        Route::resource('expenses-settings', 'ExpensesSettingsController');
 
         Route::resource('yearly-preview', 'YearlyPreviewController');
         Route::resource('monthly-reports', 'MonthlyReportsController');

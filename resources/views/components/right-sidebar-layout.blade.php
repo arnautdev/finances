@@ -37,9 +37,9 @@
                 </a>
             </li>
 
-            <li class="nav-item has-treeview {{ $isMenuOpen(['expenses-categories', 'expenses']) }}">
+            <li class="nav-item has-treeview {{ $isMenuOpen(['expenses-categories', 'expenses-settings']) }}">
                 <a href="#"
-                   class="nav-link {{ $isActive(['expenses-categories', 'expenses']) }}">
+                   class="nav-link {{ $isActive(['expenses-categories', 'expenses-settings']) }}">
 
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
@@ -56,8 +56,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('expenses.index') }}"
-                           class="nav-link {{ $isActive('expenses') }}">
+                        <a href="{{ route('expenses-settings.index') }}"
+                           class="nav-link {{ $isActive('expenses-settings') }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{ __('Expenses settings') }}</p>
                         </a>
