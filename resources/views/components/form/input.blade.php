@@ -25,6 +25,9 @@
     if(!isset($typeInput)){
         $typeInput = 'inline';
     }
+    if(isset($onlyInput)){
+        $typeInput = '';
+    }
 @endphp
 
 <div>
