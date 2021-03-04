@@ -92423,7 +92423,6 @@ var app = new Vue({
     console.log('Vue.js');
   },
   methods: {
-    // translate strings
     trans: function trans(str) {
       return str;
     }
@@ -92601,8 +92600,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/dmitry/Sites/dev/finances/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/dmitry/Sites/dev/finances/resources/css/app.scss */"./resources/css/app.scss");
+__webpack_require__(/*! /app/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /app/resources/css/app.scss */"./resources/css/app.scss");
 
 
 /***/ })

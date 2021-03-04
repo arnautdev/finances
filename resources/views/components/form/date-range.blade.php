@@ -23,12 +23,35 @@
     }
 
     $defaultFormat = $format ?? 'YYYY-MM-DD';
+    if(!isset($typeInput)){
+        $typeInput = 'inline';
+    }
 @endphp
 
 <div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label text-right">{{ $label }}</label>
-        <div class="col-lg-7">
+    @if(isset($typeInput) && $typeInput == 'inline')
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-right">{{ $label }}</label>
+            <div class="col-lg-7">
+                <div class="input-group date" id="{{ $name }}" data-target-input="nearest">
+                    <input type="text"
+                           name="{{ $name }}"
+                           class="form-control datetimepicker-input"
+                           data-target="#{{$name}}"
+                           value="{{ $inputValue }}"
+                    />
+                    <div class="input-group-append" data-target="#{{$name}}" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End form-group -->
+    @endif
+
+    @if(isset($typeInput) && $typeInput == 'standart')
+        <div class="form-group">
+            <label class="col-form-label">{{ $label }}</label>
             <div class="input-group date" id="{{ $name }}" data-target-input="nearest">
                 <input type="text"
                        name="{{ $name }}"
@@ -41,8 +64,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End form-group -->
+        <!-- End form-group -->
+    @endif
 </div>
 
 @push('scripts')

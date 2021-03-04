@@ -18,6 +18,13 @@ class GoalObserver
         //
     }
 
+    public function updating(Goal $goal)
+    {
+        if ($goal->isDirty('isDone') && $goal->isDone == 'yes') {
+            $goal->done_at = date('Y-m-d');
+        }
+    }
+
     /**
      * Handle the goal "updated" event.
      *

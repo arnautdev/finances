@@ -8,11 +8,12 @@ services:
       - APACHE_USER=#1000
     volumes:
       - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ${APP_PATH_HOST}/docker/web/sites-enabled/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
-    links:
-      - node
+  #    links:
+  #      - node
 
   db:
     image: mariadb:10.3
@@ -40,12 +41,12 @@ services:
     working_dir: ${APP_PATH_CONTAINER}
     command: composer install
 
-
-  node:
-    build:
-      context: docker/node
-
-    volumes:
-      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
-    working_dir: ${APP_PATH_CONTAINER}
-
+#  node:
+#    image: node:alpine
+#    volumes:
+#      - .:/app
+#    working_dir: /app
+#    user: node
+#    environment:
+#      - NODE_ENV=development
+#    command: "npm run watch"

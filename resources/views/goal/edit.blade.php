@@ -1,7 +1,7 @@
 <x-dashboard-layout>
 
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <div class="card card-info card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -15,8 +15,20 @@
                         {{ Form::open(['route' => ['goal.update', $data['goal']->id]]) }}
                         @method('PUT')
 
+                        {{ $form->select([
+                            'label' => 'Is done',
+                            'typeInput' => 'standart',
+                            'name' => 'isDone',
+                            'options' => [
+                                'yes' => 'Yes',
+                                'no' => 'No',
+                            ],
+                            'model' => 'goal',
+                        ]) }}
+
                         {{ $form->input([
                             'label' => 'Title',
+                            'typeInput' => 'standart',
                             'name' => 'title',
                             'model' => 'goal',
                         ]) }}
@@ -24,17 +36,38 @@
 
                         {{ $form->dateRange([
                             'label' => 'Start date',
+                            'typeInput' => 'standart',
                             'name' => 'startDate',
                             'model' => 'goal',
                         ]) }}
 
                         {{ $form->dateRange([
                             'label' => 'End date',
+                            'typeInput' => 'standart',
                             'name' => 'endDate',
                             'model' => 'goal',
                         ]) }}
 
-                        <x-form.submit-buttons></x-form.submit-buttons>
+                        {{ $form->textarea([
+                            'label' => 'Description',
+                            'typeInput' => 'standart',
+                            'name' => 'description',
+                            'model' => 'goal',
+                        ]) }}
+
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-sm btn-info">
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    {{ __('Save item') }}
+                                </button>
+
+                                <a href="{{ $page->getCancelRoute() }}" class="btn btn-sm btn-default">
+                                    <i class="fa fa-arrow-circle-left"></i>&nbsp;
+                                    {{ __('Cancel') }}
+                                </a>
+                            </div><!-- End ./col-sm -->
+                        </div><!-- End ./form-group -->
 
                         {{ Form::close() }}
                     </div>
@@ -45,7 +78,7 @@
         </div>
         <!-- End ./col-lg -->
 
-        <div class="col-lg-5">
+        <div class="col-lg-6">
 
             <div class="card card-info card-outline">
                 <div class="card-header">

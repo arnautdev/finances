@@ -22,10 +22,12 @@ class Goal extends Model
      */
     public $fillable = [
         'title',
+        'description',
         'userId',
         'startDate',
         'endDate',
         'isDone',
+        'done_at',
     ];
 
     /**

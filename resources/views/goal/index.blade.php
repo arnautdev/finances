@@ -11,9 +11,11 @@
                                 'name' => 'isDone',
                                 'emptyOption' => true,
                                 'onlyInput' => true,
+                                'defaultValue' => 'no',
                                 'options' => [
-                                    'yes' => 'Yes',
+                                    'all' => 'All',
                                     'no' => 'No',
+                                    'yes' => 'Yes',
                                 ]
                             ]) }}
                         </div>

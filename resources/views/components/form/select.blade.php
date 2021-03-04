@@ -19,52 +19,63 @@
     if(request($name, false)){
         $inputValue = request($name);
     }
+
+    if(isset($defaultValue)){
+        $inputValue = $defaultValue;
+    }
+
+    if(!isset($options)){
+        $options = [];
+    }
+
+    if(!isset($typeInput)){
+        $typeInput = 'inline';
+    }
+
+    if(isset($onlyInput)){
+        $typeInput = '';
+    }
+
+    // if(isset($emptyOption) && $emptyOption == true){
+    //    $options['all'] = __('Select ...');
+    // }
 @endphp
 
 <div>
 
-    @if(isset($onlyInput) && $onlyInput == true)
-        <select name="{{ $name }}" id="{{ $name }}" class="form-control {{ $class }}">
-            @if(isset($options))
-                @if(isset($emptyOption) && $emptyOption == true)
-                    <option value="all">{{ __('All') }}</option>
-                @endif
-
-                @foreach($options as $optionId => $optionVal)
-                    <option value="{{ $optionId }}"
-                            @if($inputValue == $optionId) selected="selected" @endif
-                    >
-                        {{ $optionVal }}
-                    </option>
-                @endforeach
-            @endif
-        </select>
-
-        <small class="err-msg">{{ $errors->first($name) }}</small>
-    @else
-        <div class="form-group row">
+    @if($typeInput == 'inline')
+        <div class="form-group">
             <label for="{{ $name }}" class="col-sm-3 col-form-label text-right">
                 {{ $label }}
             </label>
             <div class="col-sm-7">
-                <select name="{{ $name }}" id="{{ $name }}" class="form-control {{ $class }}">
-                    @if(isset($options))
-                        @if(isset($emptyOption) && $emptyOption == true)
-                            <option value="all">{{ __('All') }}</option>
-                        @endif
-
-                        @foreach($options as $optionId => $optionVal)
-                            <option value="{{ $optionId }}"
-                                    @if($inputValue == $optionId) selected="selected" @endif
-                            >
-                                {{ $optionVal }}
-                            </option>
-                        @endforeach
-                    @endif
-                </select>
-
+                {{ Form::select($name, $options, $inputValue, [
+                    'id' => $name,
+                    'class' => 'form-control ' . $class
+                ]) }}
                 <small class="err-msg">{{ $errors->first($name) }}</small>
             </div>
-        </div><!-- End ./form-group -->
+        </div>
+        <!-- End ./form-group -->
+    @endif
+
+    @if($typeInput == 'standart')
+        <div class="form-group">
+            <label for="{{ $name }}">{{ $label }}</label>
+            {{ Form::select($name, $options, $inputValue, [
+                'id' => $name,
+                'class' => 'form-control ' . $class
+            ]) }}
+            <small class="err-msg">{{ $errors->first($name) }}</small>
+        </div>
+        <!-- End ./form-group -->
+    @endif
+
+    @if(isset($onlyInput) && $onlyInput == true)
+        {{ Form::select($name, $options, $inputValue, [
+            'id' => $name,
+            'class' => 'form-control ' . $class
+        ]) }}
+        <small class="err-msg">{{ $errors->first($name) }}</small>
     @endif
 </div>

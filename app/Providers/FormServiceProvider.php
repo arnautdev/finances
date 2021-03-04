@@ -152,7 +152,8 @@ class FormServiceProvider extends ServiceProvider
      */
     public function textarea($args = [])
     {
-        return view($this->namespace . '.textarea', $args);
+        $this->data = array_merge($this->data, $args);
+        return view($this->namespace . '.textarea', $this->data);
     }
 
 

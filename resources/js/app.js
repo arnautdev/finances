@@ -20,7 +20,6 @@ const app = new Vue({
         console.log('Vue.js');
     },
     methods: {
-        // translate strings
         trans(str) {
             return str;
         }
