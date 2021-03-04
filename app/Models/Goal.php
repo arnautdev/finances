@@ -123,4 +123,17 @@ class Goal extends Model
             ->where('goalActionId', '=', $goalAction->id)
             ->count();
     }
+
+
+    /**
+     * @return false|int
+     */
+    public function getOutstandingDays()
+    {
+        $today = $this->getSqlDate();
+        $dueDate = $this->getSqlDate($this->endDate);
+
+        $diff = $today->diff($dueDate);
+        return $diff->days;
+    }
 }

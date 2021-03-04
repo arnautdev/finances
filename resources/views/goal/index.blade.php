@@ -54,6 +54,7 @@
                     <th>{{ __('Progress') }}</th>
                     <th>{{ __('Start Date') }}</th>
                     <th>{{ __('End Date') }}</th>
+                    <th>{{ __('Outstanding days') }}</th>
                     <th>{{ __('Is done') }}</th>
                     <th>{{ __('Actions') }}</th>
                 </tr>
@@ -79,6 +80,7 @@
                             </td>
                             <td>{{ $goal->startDate }}</td>
                             <td>{{ $goal->endDate }}</td>
+                            <td>{{ $goal->getOutstandingDays() }}</td>
                             <td>{{ __(ucfirst($goal->isDone)) }}</td>
                             <td>
                                 <x-table-actions id="{{ $goal->id }}"></x-table-actions>

@@ -7,6 +7,12 @@
                     <h3 class="card-title">
                         {!! __('Edit goal <b>:name</b>', ['name' => strtoupper($data['goal']->title)]) !!}
                     </h3>
+                    <div class="card-tools">
+                        <div class="text-secondary">
+                            {{ __('Outstanding days:') }}
+                            <b>{{ $data['goal']->getOutstandingDays() }}</b>
+                        </div>
+                    </div>
                 </div>
                 <!-- End ./header -->
 
