@@ -113,7 +113,7 @@ class GoalController extends Controller
     private function validateData(Request $request): array
     {
         return $request->validate([
-            'isDone' => 'required',
+            'isDone' => 'nullable',
             'title' => 'required|min:3|max:250',
             'description' => 'nullable',
             'startDate' => 'required|date',
