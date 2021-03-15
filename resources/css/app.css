@@ -1,0 +1,12 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~jqueryui/jquery-ui.css";
+
+@import "~parsleyjs/src/parsley.css";
+
+@import "../assets/css/default/style.css";
+@import "../assets/css/default/style-responsive.css";
+@import "../assets/css/default/theme/default.css";
+
+.no-padding {
+    padding: 0px !important;
+}

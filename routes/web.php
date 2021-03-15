@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/// all routes needed auth
+Route::namespace('App\Http\Controllers')->middleware('auth')->group(function () {
+    Route::resource('dashboard', 'DashboardController');
+    Route::resource('client', 'ClientController');
+    Route::resource('administrator', 'AdministratorController');
+    Route::resource('monthly-reports', 'MonthlyReportsController');
 });

@@ -1,0 +1,42 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./docker/web
+    environment:
+      - APACHE_USER=#1000
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ${APP_PATH_HOST}/docker/web/sites-enabled/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+    ports:
+      - 8080:80
+    working_dir: ${APP_PATH_CONTAINER}
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 7080:80
+
+  composer:
+    image: composer
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    working_dir: ${APP_PATH_CONTAINER}
+    command: composer install
+
+  node:
+    image: node:alpine
+    volumes:
+      - .:/app
+    working_dir: /app
+    user: node
+    environment:
+      - NODE_ENV=development
+    command: "npm run start:dev"
