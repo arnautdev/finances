@@ -27,6 +27,46 @@ class SidebarServiceProvider extends ServiceProvider
     }
 
     /**
+     * Check if user have any permissions
+     * @param $row
+     * @return bool
+     */
+    public function hasAnyPermission($row)
+    {
+        $user = auth()->user();
+        $subPermissions = [];
+        if (isset($row['sub_menu'])) {
+            foreach ($row['sub_menu'] as $submenu) {
+                $permission = explode('.', $submenu['route-name']);
+                $permission = array_reverse($permission);
+                $permission = implode(' ', $permission);
+                $subPermissions[] = $permission;
+            }
+        }
+        if (in_array($user->email, config('acl.superAdminEmails'))) {
+            return true;
+        }
+        return $user->hasAnyPermission($subPermissions);
+    }
+
+    /**
+     * @param $row
+     */
+    public function can($row)
+    {
+        $user = auth()->user();
+        $permission = explode('.', $row['route-name'] ?? $row);
+        $permission = array_reverse($permission);
+        $permission = implode(' ', $permission);
+
+        if (in_array($user->email, config('acl.superAdminEmails'))) {
+            return true;
+        }
+        return $user->can($permission);
+    }
+
+
+    /**
      * @param array $row
      * @return string
      */
@@ -67,7 +107,31 @@ class SidebarServiceProvider extends ServiceProvider
      */
     public function isActive(array $row)
     {
-//        return 'active';
+        if (!isset($row['route-name'])) {
+            return false;
+        }
+
+        if (isset($row['sub_menu'])) {
+            $isActive = false;
+            foreach ($row['sub_menu'] as $subMenu) {
+                if (isset($subMenu['route-name'])) {
+                    $route = explode('.', $subMenu['route-name']);
+                    $route = $route[0] . '.*';
+                    if (request()->routeIs($route)) {
+                        $isActive = true;
+                        break;
+                    }
+                }
+            }
+            if ($isActive) {
+                return 'active';
+            }
+        }
+
+        $route = explode('.', $row['route-name']);
+        $route = $route[0] . '.*';
+
+        return (request()->routeIs($route)) ? 'active' : '';
     }
 
     /**

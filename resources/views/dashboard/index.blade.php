@@ -131,5 +131,33 @@
                 </div>
             </div>
         </div>
+        <!-- End ./col-lg-6 -->
+
+        <div class="col-lg-6">
+            <div class="panel panel-inverse" data-sortable-id="index-9">
+                <div class="panel-heading ui-sortable-handle">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
+                           data-click="panel-expand"><i
+                                class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
+                           data-click="panel-reload"><i
+                                class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
+                           data-click="panel-collapse"><i
+                                class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger"
+                           data-click="panel-remove"><i
+                                class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Goal progress</h4>
+                </div>
+                <div class="panel-body">
+                    /// content here
+                </div>
+            </div>
+        </div>
+        <!-- End ./col.lg-6 -->
     </div>
+    <!-- End ./row -->
 @endsection

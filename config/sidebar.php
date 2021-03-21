@@ -26,6 +26,10 @@ return [
                     'title' => 'Administrators'
                 ],
                 [
+                    'route-name' => 'group.index',
+                    'title' => 'Groups'
+                ],
+                [
                     'route-name' => 'client.index',
                     'title' => 'Clients'
                 ],
@@ -38,11 +42,11 @@ return [
             'caret' => true,
             'sub_menu' => [
                 [
-                    'route-name' => 'dashboard.index',
+                    'route-name' => 'category.index',
                     'title' => 'Categories',
                 ],
                 [
-                    'route-name' => 'dashboard.index',
+                    'route-name' => 'expense-settings.index',
                     'title' => 'Expenses settings',
                 ],
             ]
@@ -62,6 +66,12 @@ return [
         [
             'icon' => 'fa fa-list',
             'title' => 'TODO list history',
+            'route-name' => 'javascript:;',
+            'caret' => false,
+        ],
+        [
+            'icon' => 'fa fa-circle-notch',
+            'title' => 'Live circle',
             'route-name' => 'javascript:;',
             'caret' => false,
         ],

@@ -14,7 +14,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+        return view('clients.index', compact('data'));
     }
 
     /**
@@ -30,7 +31,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +42,7 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
@@ -52,7 +53,7 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function edit(Client $client)
@@ -63,8 +64,8 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Client $client)
@@ -75,7 +76,7 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)

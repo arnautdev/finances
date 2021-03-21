@@ -17,7 +17,8 @@
         <!-- end news-feed -->
         <!-- begin right-content -->
         <div class="right-content">
-            <!-- begin register-header -->
+        @include('components.flash-messages')
+        <!-- begin register-header -->
             <h1 class="register-header">
                 {{ __('Sign Up') }}
                 <small>{{ __('Create your Color Account. It’s free and always will be.') }}</small>

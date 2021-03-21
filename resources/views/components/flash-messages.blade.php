@@ -1,4 +1,4 @@
-<div class="content no-padding">
+<div class="@if(!request()->routeIs('login.*') || !request()->routeIs('register.*')) content @endif no-padding">
     @if(session('success'))
         <div class="alert alert-success fade show m-b-10 no-radius no-margin">
             <span class="close cursor-pointer" data-dismiss="alert">×</span>

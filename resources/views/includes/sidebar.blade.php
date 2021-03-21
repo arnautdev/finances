@@ -45,7 +45,7 @@
                     @if($sidebar->hasSubMenu($row))
                         <ul class="sub-menu">
                             @foreach($row['sub_menu'] as $subMenu)
-                                <li class=" ">
+                                <li class="{{ $sidebar->isActive($subMenu) }}">
                                     <a href="{{ $sidebar->getSidebarRoute($subMenu) }}">{{ __($subMenu['title']) }}</a>
                                 </li>
                             @endforeach

@@ -14,7 +14,8 @@
         <!-- end news-feed -->
         <!-- begin right-content -->
         <div class="right-content">
-            <!-- begin login-header -->
+        @include('components.flash-messages')
+        <!-- begin login-header -->
             <div class="login-header">
                 <div class="brand">
                     <b>{{ config('app.name') }}</b>
